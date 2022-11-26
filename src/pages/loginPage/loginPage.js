@@ -9,6 +9,8 @@ const LoginPage = props => {
 
     return (
       <div className="container">
+        <h1 className="text-center">Strings</h1>
+        
         <div className="jumbotron">
 
           <div className="row header-row">

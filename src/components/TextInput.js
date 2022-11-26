@@ -3,10 +3,10 @@ import React from 'react';
     const TextInput = props => {
 
     return (
-        <div className="row" id="text-form">
+        <div id="text-form">
                 <input 
                     type="message" 
-                    className="form-control col-md-10" 
+                    className="col-md-10"
                     placeholder="Write your message here"
                     value={props.userMessage}
                     onChange={props.handleChange}
