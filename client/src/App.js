@@ -9,6 +9,8 @@ import ChatPage from './pages/chatPage/chatPage.js';
 import './App.scss';
 
 function App() {
+
+  
   return (
     <Router>
     <div className="app">

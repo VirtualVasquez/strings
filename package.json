@@ -1,0 +1,19 @@
+{
+  "name": "strings",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run start --prefix client & npm run start --prefix server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VirtualVasquez/strings.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VirtualVasquez/strings/issues"
+  },
+  "homepage": "https://github.com/VirtualVasquez/strings#readme"
+}
