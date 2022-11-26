@@ -1,35 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export class SignupForm extends Component {
+const SignupForm = () => {
 
-  render () {
     return (
-            <div className="modal fade" id="createAccountModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div className="modal-dialog">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">Create Account</h5>
-                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div className="modal-body">
-                  <form id="signUpForm">
-                    <div className="mb-3">
-                      <label htmlFor="username" className="form-label">Username</label>
-                      <input type="username" className="form-control" id="username" aria-describedby="usernameHelp"></input>
-                    </div>
-                    <div className="mb-3">
-                      <label htmlFor="password" className="form-label">Password</label>
-                      <input type="password" className="form-control" id="password" aria-describedby="passwordHelp"></input>
-                    </div>
-                  </form>
-                  </div>
-                  <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" className="btn btn-primary">Create Account</button>
-                  </div>
-                </div>
-              </div>
+      <div className="col-md-6 offset-md-3">
+
+        <form id="signUpForm">
+          <div>
+            <div className="mb-3">
+              <label htmlFor="createUsername" className="form-label">Username</label>
+              <input type="createUsername" className="form-control" id="createUsername"></input>
             </div>
+            <div className="mb-3">
+              <label htmlFor="createPassword" className="form-label">Password</label>
+              <input type="createPassword" className="form-control" id="createPassword"></input>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+              <input type="confirmPassword" className="form-control" id="confirmPassword"></input>
+            </div>
+          </div>
+          <button type="submit" className="btn col-12 btn-warning">Submit</button>
+        </form>
+      </div>
     );
-  }
 }
+
+
+export default SignupForm;

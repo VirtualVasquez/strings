@@ -4,7 +4,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import { LoginPage } from './pages/loginPage/loginPage.js';
+import LoginPage from './pages/loginPage/loginPage';
 import { ChatPage } from './pages/chatPage/chatPage.js';
 import './App.scss';
 
@@ -12,6 +12,7 @@ function App() {
   return (
     <Router>
     <div className="app">
+    <h1 className="text-center">Strings</h1>
       <Routes>
         <Route exact path="/" element={<LoginPage />} />
         <Route exact path="/chat" element={<ChatPage />} />
