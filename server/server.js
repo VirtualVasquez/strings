@@ -7,9 +7,29 @@ app.get("/", (req, res) => {
 })
 
 
-    // http://localhost:3001/api/name
-app.get("/api/name", (req, res) => {
+//Get all messages
+app.get("/api/messages", (req, res) => {
+    res.send("Get all Messages");
+})
 
+//Create a chat message all messages
+app.post("/api/messages", (req, res) => {
+    res.send("Create a chat message all messages");
+})
+
+//Get all Users
+app.get("/api/users", (req, res) => {
+    res.send("Get all users");
+})
+
+//Create a user
+app.get("/api/messages", (req, res) => {
+    res.send("Create a user")
+})
+
+//Get a single user
+app.get("/api/messages", (req, res) => {
+    res.send("Get a single user")
 })
 
 app.listen(port, () => {
