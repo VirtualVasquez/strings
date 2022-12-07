@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run start --prefix client & npm run start --prefix server"
+    "start": "concurrently \"npm run start --prefix client\" \"npm run start --prefix server\""
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/VirtualVasquez/strings/issues"
   },
-  "homepage": "https://github.com/VirtualVasquez/strings#readme"
+  "homepage": "https://github.com/VirtualVasquez/strings#readme",
+  "dependencies": {
+    "concurrently": "^7.6.0",
+    "nodemon": "^2.0.20"
+  }
 }
