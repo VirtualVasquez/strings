@@ -42,16 +42,16 @@ function App() {
       });
   }
   function createUser() {
-    let userid = prompt('Enter userid');
-    let name = prompt('Enter user name');
-    let userpass = prompt('Enter user pass');
-    let date = prompt('Enter todays date (YYYY-MM-DD)');
+    let user_id = prompt('Enter userid');
+    let user_name = prompt('Enter user name');
+    let user_pass = prompt('Enter user pass');
+    let created_date = prompt('Enter todays date (YYYY-MM-DD)');
     fetch('http://localhost:3001/api/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({userid, name, userpass, date}),
+      body: JSON.stringify({user_id, user_name, user_pass, created_date}),
     })
       .then(response => {
         return response.text();

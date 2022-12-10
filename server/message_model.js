@@ -2,16 +2,16 @@ const Pool = require('pg').Pool
 const pool = new Pool({
     //these credentials are just copied from an example.
     //may need to change these to get the file to work.
-  user: 'my_user',
+  user: 'postgres',
   host: 'localhost',
-  database: 'my_database',
-  password: 'root',
+  database: 'chat_app',
+  password: 'sword2gun',
   port: 5432,
 });
 
 const getMessages = () => {
     return new Promise(function(resolve, reject){
-        pool.query('SELECT * FROM messages ORDER BY createdate ASC', (error, results) => {
+        pool.query('SELECT * FROM messages', (error, results) => {
             if (error){
                 reject(error)
             }
@@ -23,7 +23,7 @@ const getMessages = () => {
 const createMessage = (body) => {
     return new Promise(function(resolve, reject) {
         const {id, userid, text, createddate } = body;
-        pool.query('INSERT INTO messages (id, userid, text, createddate) VALUES ($1, $2, $3, $4) RETURNING *', [id, userid, text, createddate], (error, results) => {
+        pool.query('INSERT INTO messages (message_id, user_id, message_text, created_date) VALUES ($1, $2, $3, $4) RETURNING *', [message_id, user_id, message_text, created_date], (error, results) => {
             if(error){
                 reject(error)
             }

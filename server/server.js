@@ -28,28 +28,48 @@ app.listen(80, function () {
 
 //Get all messages
 app.get("/api/messages", (req, res) => {
-    message_model.getMessages();
+    message_model.getMessages()
+    .then(response => {
+        res.status(200).send(response);
+    })
 })
 
-//Create a chat message all messages
+//Create a chat message 
 app.post("/api/messages", (req, res) => {
-    res.send("Create a chat message all messages");
+    message_model.createMessage(req.body).then(response => {
+        res.status(200).send(response);
+    })
+    .catch(error => {
+        res.status(500).send(error);
+    })
 })
 
 //Get all Users
 app.get("/api/users", (req, res) => {
-    user_model.getUsers();
-    // res.send("Get all users");
+    user_model.getUsers()
+    .then(response => {
+        res.status(200).send(response);
+    })
 })
 
 //Create a user
 app.post("/api/users", (req, res) => {
-    user_model.createUser();
+    user_model.createUser(req.body).then(response => {
+        res.status(200).send(response);
+    })
+    .catch(error => {
+        res.status(500).send(error);
+    })
 })
 
 //Get a single user
-app.get("/api/messages", (req, res) => {
-    res.send("Get a single user")
+app.get("/api/users", (req, res) => {
+    user_model.getUser(req.body).then(response => {
+        res.status(200).send(response);
+    })
+    .catch(error => {
+        res.status(500).send(error);
+    })
 })
 
 app.listen(port, () => {

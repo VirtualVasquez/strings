@@ -23,7 +23,7 @@ const getUsers = () => {
 const getUser = () => {
     return new Promise(function(resolve, reject){
         const id = parseInt(request.params.id);
-        pool.query('SELECT * FROM users WHERE $userid = $1', [userid], (error,results) => {
+        pool.query('SELECT * FROM users WHERE $user_id = $1', [user_id], (error,results) => {
             if (error){
                 reject(error)
             }
@@ -35,8 +35,8 @@ const getUser = () => {
 
 const createUser = (body) => {
     return new Promise(function(resolve, reject) {
-        const {userid, username, userpass, createddate } = body;
-        pool.query('INSERT INTO users (userid, username, userpass, createddate) VALUES ($1, $2, $3, $4) RETURNING *', [userid, username, userpass, createddate], (error, results) => {
+        const {user_id, user_name, user_pass, created_date } = body;
+        pool.query('INSERT INTO users (user_id, user_name, user_pass, created_date) VALUES ($1, $2, $3, $4) RETURNING *', [user_id, user_name, user_pass, created_date], (error, results) => {
             if(error){
                 reject(error)
             }
@@ -48,7 +48,7 @@ const createUser = (body) => {
 const deleteUser = () => {
     return new Promise(function(resolve, reject){
         const id = parseInt(request.params.id);
-        pool.query('DELETE FROM users WHERE userid = $1', [userid], (error, results) => {
+        pool.query('DELETE FROM users WHERE user_id = $1', [user_id], (error, results) => {
             if(error){
                 reject(error)
             }
