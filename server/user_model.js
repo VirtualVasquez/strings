@@ -20,17 +20,19 @@ const getUsers = () => {
     })
 }
 
-const getUser = () => {
-    return new Promise(function(resolve, reject){
-        const id = parseInt(request.params.id);
-        pool.query('SELECT * FROM users WHERE $user_id = $1', [user_id], (error,results) => {
-            if (error){
-                reject(error)
-            }
-            resolve(results.rows);
-        })
-    })
-}
+
+//Commenting out to mark as unfinished
+// const getUser = () => {
+//     return new Promise(function(resolve, reject){
+//         const id = parseInt(request.params.id);
+//         pool.query('SELECT * FROM users WHERE $user_id = $1', [user_id], (error,results) => {
+//             if (error){
+//                 reject(error)
+//             }
+//             resolve(results.rows);
+//         })
+//     })
+// }
 
 
 const createUser = (body) => {
