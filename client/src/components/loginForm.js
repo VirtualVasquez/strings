@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LoginForm = () => {
+const LoginForm = props => {
 
     return (
           <div className="col-md-6 offset-md-3">
@@ -9,12 +9,24 @@ const LoginForm = () => {
               <div>
                 <div className="mb-3">
                   <label htmlFor="username" className="form-label">Username</label>
-                  <input type="username" className="form-control" id="username"></input>
+                  <input 
+                    type="username" 
+                    className="form-control" 
+                    id="username"
+                    onChange={e => props.setUsername(e.target.value)}
+                  >
+                  </input>
                 </div>
 
                 <div className="mb-3">
                   <label htmlFor="password" className="form-label">Password</label>
-                  <input type="password" className="form-control" id="password"></input>
+                  <input 
+                    type="password" 
+                    className="form-control" 
+                    id="password"
+                    onChange={e => props.setPassword(e.target.value)}
+                  >
+                  </input>
                 </div>
               </div>
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import LoginForm from '../../components/loginForm.js';
 import SignupForm from '../../components/signupForm.js';
 import './loginPage.scss';
@@ -6,6 +6,10 @@ import './loginPage.scss';
 const LoginPage = props => {
 
   const [showCreateForm, setShowCreateForm] = useState(false);
+  const [providedUsername, setUsername] = useState('');
+  const [providedPassword, setPassword] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState('');
+
 
     return (
       <div className="container">
@@ -20,7 +24,17 @@ const LoginPage = props => {
           </div>
 
           <div className="row">
-          {showCreateForm ? <SignupForm /> : <LoginForm />}
+          {showCreateForm ? 
+            <SignupForm 
+              setUsername={setUsername}
+              setPassword={setPassword}
+              setPasswordCheck={setPasswordCheck}
+            /> : 
+            <LoginForm 
+              setUsername={setUsername}
+              setPassword={setPassword}
+            />
+          }
           </div>
 
           <div className="row actions-row">
