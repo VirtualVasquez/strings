@@ -5,19 +5,21 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import axios from "axios";
 import LoginPage from './pages/loginPage/loginPage';
 import ChatPage from './pages/chatPage/chatPage.js';
 import Protected from "./helpers/Protected";
 import './App.scss';
 
 function App() {
-    const [isLoggedIn, setisLoggedIn] = useState(null);
-    const logIn = () => {
-        setisLoggedIn(true);
-      };
-      const logOut = () => {
-        setisLoggedIn(false);
-      };
+  const [isLoggedIn, setisLoggedIn] = useState(null);
+  const logIn = () => {
+    setisLoggedIn(true);
+  };
+  const logOut = () => {
+    setisLoggedIn(false);
+  };
+  
   
   return (
     <Router>

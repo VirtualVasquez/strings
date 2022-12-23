@@ -10,6 +10,23 @@ const LoginPage = props => {
   const [providedPassword, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
 
+  function loginUser() {
+
+    fetch('http://localhost:3001/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({providedUsername, providedPassword})
+    })
+    .then(response => {
+      return response.text();
+    })
+    .then(data => {
+      props.setisLoggedIn(true);
+    })
+  }
+
 
     return (
       <div className="container">
