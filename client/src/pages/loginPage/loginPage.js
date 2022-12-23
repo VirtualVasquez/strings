@@ -29,10 +29,14 @@ const LoginPage = props => {
               setUsername={setUsername}
               setPassword={setPassword}
               setPasswordCheck={setPasswordCheck}
+              setisLoggedIn={props.setisLoggedIn}
             /> : 
             <LoginForm 
               setUsername={setUsername}
+              providedUsername={providedUsername}
               setPassword={setPassword}
+              providedPassword={providedPassword}
+              setisLoggedIn={props.setisLoggedIn}
             />
           }
           </div>

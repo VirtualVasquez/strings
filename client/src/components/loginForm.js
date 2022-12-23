@@ -2,6 +2,25 @@ import React from 'react';
 
 const LoginForm = props => {
 
+  function loginUser() {
+    let user_name = props.providedUsername
+    let user_pass = props.providedPassword
+
+    fetch('http://localhost:3001/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({user_name, user_pass})
+    })
+    .then(response => {
+      return response.text();
+    })
+    .then(data => {
+      props.setisLoggedIn(true);
+    })
+  }
+
     return (
           <div className="col-md-6 offset-md-3">
 

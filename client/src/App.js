@@ -23,7 +23,11 @@ function App() {
     <Router>
     <div className="app">
       <Routes>
-        <Route exact path="/" element={<LoginPage />} />
+        <Route 
+          exact path="/" 
+          element={<LoginPage />} 
+          setisLoggedIn={setisLoggedIn}
+          />
         <Route exact path="/chat" 
           element={
             <Protected isLoggedIn={isLoggedIn}>

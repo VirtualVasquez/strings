@@ -62,8 +62,8 @@ app.post("/api/users", (req, res) => {
     })
 })
 
-//Get a single user
-app.get("/api/users", (req, res) => {
+//Get a single user and login
+app.post("/api/login", (req, res) => {
     user_model.getUser(req.body).then(response => {
         res.status(200).send(response);
     })

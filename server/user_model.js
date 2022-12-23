@@ -21,18 +21,17 @@ const getUsers = () => {
 }
 
 
-//Commenting out to mark as unfinished
-// const getUser = () => {
-//     return new Promise(function(resolve, reject){
-//         const id = parseInt(request.params.id);
-//         pool.query('SELECT * FROM users WHERE $user_id = $1', [user_id], (error,results) => {
-//             if (error){
-//                 reject(error)
-//             }
-//             resolve(results.rows);
-//         })
-//     })
-// }
+const login = (body) => {
+    return new Promise(function(resolve, reject){
+        const {user_name} = body;
+        pool.query('SELECT * FROM users WHERE user_name = $1', [user_name], (error,results) => {
+            if (error){
+                reject(error)
+            }
+            resolve(results.rows);
+        })
+    })
+}
 
 
 const createUser = (body) => {
@@ -47,21 +46,9 @@ const createUser = (body) => {
     })
 }
 
-const deleteUser = () => {
-    return new Promise(function(resolve, reject){
-        const id = parseInt(request.params.id);
-        pool.query('DELETE FROM users WHERE user_id = $1', [user_id], (error, results) => {
-            if(error){
-                reject(error)
-            }
-            resolve(`Merchant deleted with ID: ${id}`) 
-        })
-    })
-}
 
 module.exports = {
     getUsers,
-    getUser,
+    login,
     createUser,
-    deleteUser,
   }
