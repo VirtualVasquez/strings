@@ -1,7 +1,11 @@
 const express = require('express');
 let cors = require('cors');
+const bodyParser = require('body-parser');
 const app = express();
 app.use(cors());
+app.use(bodyParser.urlencoded({
+    extended: true
+  }));
 const port = 3001;
 
 const user_model = require('./user_model.js');
@@ -64,7 +68,8 @@ app.post("/api/users", (req, res) => {
 
 //Get a single user and login
 app.post("/api/login", (req, res) => {
-    user_model.getUser(req.body).then(response => {
+    user_model.login(req.body).then(response => {
+        console.log(req.body);
         res.status(200).send(response);
     })
     .catch(error => {
@@ -73,5 +78,5 @@ app.post("/api/login", (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`exapmle app listening on port ${port}`)
+    console.log(`example app listening on port ${port}`)
 })

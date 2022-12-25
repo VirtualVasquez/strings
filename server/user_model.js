@@ -24,7 +24,7 @@ const getUsers = () => {
 const login = (body) => {
     return new Promise(function(resolve, reject){
         const {user_name} = body;
-        pool.query('SELECT * FROM users WHERE user_name = $1', [user_name], (error,results) => {
+        pool.query(`SELECT * FROM users WHERE user_name = $1`, [user_name], (error,results) => {
             if (error){
                 reject(error)
             }
