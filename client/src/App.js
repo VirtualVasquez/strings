@@ -12,13 +12,16 @@ import Protected from "./helpers/Protected";
 import './App.scss';
 
 function App() {
-  const [isLoggedIn, setisLoggedIn] = useState(null);
+  const [isLoggedIn, setisLoggedIn] = useState(false);
   const logIn = () => {
     setisLoggedIn(true);
   };
   const logOut = () => {
     setisLoggedIn(false);
   };
+
+  console.log(isLoggedIn);
+  
   
   
   return (
@@ -27,8 +30,11 @@ function App() {
       <Routes>
         <Route 
           exact path="/" 
-          element={<LoginPage />} 
-          setisLoggedIn={setisLoggedIn}
+          element={<LoginPage  
+            setisLoggedIn={setisLoggedIn}
+            isLoggedIn={isLoggedIn}
+            />} 
+          
           />
         <Route exact path="/chat" 
           element={

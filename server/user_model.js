@@ -23,12 +23,17 @@ const getUsers = () => {
 
 const login = (body) => {
     return new Promise(function(resolve, reject){
-        const {user_name} = body;
+        const {user_name, user_pass} = body;
         pool.query(`SELECT * FROM users WHERE user_name = $1`, [user_name], (error,results) => {
             if (error){
                 reject(error)
             }
-            resolve(results.rows);
+            if(user_pass != results.rows[0].user_pass){
+                resolve("The provided password is incorrect");
+            }
+            if(user_pass === results.rows[0].user_pass){
+                resolve(results.rows[0].user_pass);
+            }
         })
     })
 }

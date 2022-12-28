@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import LoginForm from '../../components/loginForm.js';
 import SignupForm from '../../components/signupForm.js';
 import './loginPage.scss';
+import axios from "axios";
+
 
 const LoginPage = props => {
 
@@ -10,21 +12,17 @@ const LoginPage = props => {
   const [providedPassword, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
 
-  function loginUser() {
-
-    fetch('http://localhost:3001/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({providedUsername, providedPassword})
-    })
-    .then(response => {
-      return response.text();
-    })
-    .then(data => {
+  async function loginUser(username, password) {
+    try {
+      const response = await axios.post('http://localhost:3001/api/login', {
+        user_name: username,
+        user_pass: password,
+      });
       props.setisLoggedIn(true);
-    })
+      console.log(props.isLoggedIn);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
 
@@ -43,17 +41,19 @@ const LoginPage = props => {
           <div className="row">
           {showCreateForm ? 
             <SignupForm 
-              setUsername={setUsername}
-              setPassword={setPassword}
-              setPasswordCheck={setPasswordCheck}
-              setisLoggedIn={props.setisLoggedIn}
+              // setUsername={setUsername}
+              // setPassword={setPassword}
+              // setPasswordCheck={setPasswordCheck}
+              // setisLoggedIn={props.setisLoggedIn}
             /> : 
             <LoginForm 
               setUsername={setUsername}
               providedUsername={providedUsername}
               setPassword={setPassword}
               providedPassword={providedPassword}
+              loginUser={loginUser}
               setisLoggedIn={props.setisLoggedIn}
+              isLoggedIn={props.isLoggedIn}
             />
           }
           </div>

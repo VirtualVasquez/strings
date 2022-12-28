@@ -2,6 +2,14 @@ import React from 'react';
 
 const LoginForm = props => {
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    props.setisLoggedIn(true);
+    console.log(props.isLoggedIn);
+    // props.loginUser(props.providedUsername, props.providedPassword);
+  }
+
+
     return (
           <div className="col-md-6 offset-md-3">
 
@@ -31,7 +39,7 @@ const LoginForm = props => {
               </div>
 
 
-              <button type="submit" className="btn col-12 btn-primary">Submit</button>
+              <button type="submit" className="btn col-12 btn-primary" onClick={handleSubmit}>Submit</button>
             </form>
             
           </div>
