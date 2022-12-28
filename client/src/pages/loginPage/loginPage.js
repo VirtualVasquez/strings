@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import LoginForm from '../../components/loginForm.js';
-import SignupForm from '../../components/signupForm.js';
+import LoginForm from '../../forms/loginForm.js';
+import SignupForm from '../../forms/signupForm.js';
 import './loginPage.scss';
 import axios from "axios";
 
