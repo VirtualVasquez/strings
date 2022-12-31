@@ -2,6 +2,13 @@ import React from 'react';
 
 const SignupForm = props => {
 
+  // const formCheck = (event) => {
+  //   event.preventDefault();
+  //   console.log(props.providedUsername);
+  //   console.log(props.providedPassword);
+  //   console.log(props.passwordCheck);
+  // }
+
     return (
       <div className="col-md-6 offset-md-3">
 
@@ -38,7 +45,13 @@ const SignupForm = props => {
               </input>
             </div>
           </div>
-          <button type="submit" className="btn col-12 btn-warning">Submit</button>
+          <button 
+            type="submit" 
+            className="btn col-12 btn-warning"
+            // onClick={ formCheck}
+          >
+            Submit
+          </button>
         </form>
       </div>
     );

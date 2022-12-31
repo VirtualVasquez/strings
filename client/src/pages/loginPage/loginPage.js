@@ -48,9 +48,11 @@ const LoginPage = props => {
           <div className="row">
           {showCreateForm ? 
             <SignupForm 
+              providedUsername={providedUsername}
+              providedPassword={providedPassword}
+              passwordCheck={passwordCheck}
               setUsername={setUsername}
               setPassword={setPassword}
-              passwordCheck={passwordCheck}
               setPasswordCheck={setPasswordCheck}
             /> : 
             <LoginForm 
