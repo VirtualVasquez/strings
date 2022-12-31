@@ -3,6 +3,7 @@ import LoginForm from '../../forms/loginForm.js';
 import SignupForm from '../../forms/signupForm.js';
 import './loginPage.scss';
 import axios from "axios";
+import { redirect } from 'react-router-dom';
 
 
 const LoginPage = props => {
@@ -24,6 +25,12 @@ const LoginPage = props => {
       console.error(error);
     }
   }
+
+  useEffect( () => {
+    if(props.isLoggedIn){
+      window.location.replace('/chat');
+    }
+  });
 
 
     return (
