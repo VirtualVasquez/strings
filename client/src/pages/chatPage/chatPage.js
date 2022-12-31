@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React from 'react';
+// import axios from 'axios';
 import './chatPage.scss';
 import TextBubble from '../../components/textBubble';
 import { ChannelName } from '../../components/channelName';

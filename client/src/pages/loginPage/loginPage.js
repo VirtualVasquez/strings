@@ -50,6 +50,7 @@ const LoginPage = props => {
             <SignupForm 
               setUsername={setUsername}
               setPassword={setPassword}
+              passwordCheck={passwordCheck}
               setPasswordCheck={setPasswordCheck}
             /> : 
             <LoginForm 
