@@ -3,7 +3,6 @@ import LoginForm from '../../forms/loginForm.js';
 import SignupForm from '../../forms/signupForm.js';
 import './loginPage.scss';
 import axios from "axios";
-import { redirect } from 'react-router-dom';
 
 
 const LoginPage = props => {
@@ -11,7 +10,6 @@ const LoginPage = props => {
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [providedUsername, setUsername] = useState('');
   const [providedPassword, setPassword] = useState('');
-  const [passwordCheck, setPasswordCheck] = useState('');
 
   async function loginUser(username, password) {
     try {
@@ -19,15 +17,15 @@ const LoginPage = props => {
         user_name: username,
         user_pass: password,
       });
-      props.setisLoggedIn(true);
-      console.log(props.isLoggedIn);
+      localStorage.setItem("strings_user_id", response.data.user_id)
+      window.location.replace('/chat');
     } catch (error) {
       console.error(error);
     }
   }
 
   useEffect( () => {
-    if(props.isLoggedIn){
+    if(props.stringsUserID){
       window.location.replace('/chat');
     }
   });
@@ -51,7 +49,7 @@ const LoginPage = props => {
               // setUsername={setUsername}
               // setPassword={setPassword}
               // setPasswordCheck={setPasswordCheck}
-              // setisLoggedIn={props.setisLoggedIn}
+   
             /> : 
             <LoginForm 
               setUsername={setUsername}
@@ -59,8 +57,10 @@ const LoginPage = props => {
               setPassword={setPassword}
               providedPassword={providedPassword}
               loginUser={loginUser}
-              setisLoggedIn={props.setisLoggedIn}
-              isLoggedIn={props.isLoggedIn}
+              // setisLoggedIn={props.setisLoggedIn}
+              // isLoggedIn={props.isLoggedIn}
+              stringsUserID={props.stringsUserID}
+              setStringsUserID={props.setStringsUserID}
             />
           }
           </div>

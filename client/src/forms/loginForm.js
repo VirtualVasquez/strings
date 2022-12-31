@@ -4,9 +4,9 @@ const LoginForm = props => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    props.setisLoggedIn(true);
-    console.log(props.isLoggedIn);
-    // props.loginUser(props.providedUsername, props.providedPassword);
+    // localStorage.setItem('strings_user_id');
+    // props.setisLoggedIn(true);
+    props.loginUser(props.providedUsername, props.providedPassword);
   }
 
 

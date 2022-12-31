@@ -32,7 +32,7 @@ const login = (body) => {
                 resolve("The provided password is incorrect");
             }
             if(user_pass === results.rows[0].user_pass){
-                resolve(results.rows[0].user_pass);
+                resolve(results.rows[0]);
             }
         })
     })

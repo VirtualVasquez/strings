@@ -1,28 +1,17 @@
-import React, {Component} from 'react';
+import React, {useEffect} from 'react';
 import { useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route
 } from "react-router-dom";
-import axios from "axios";
 import LoginPage from './pages/loginPage/loginPage';
 import ChatPage from './pages/chatPage/chatPage.js';
 import Protected from "./helpers/Protected";
 import './App.scss';
 
 function App() {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
-  const logIn = () => {
-    setisLoggedIn(true);
-  };
-  const logOut = () => {
-    setisLoggedIn(false);
-  };
-
-  console.log(isLoggedIn);
-  
-  
+  const[stringsUserID, setStringsUserID] = useState(localStorage.getItem("strings_user_id"));
   
   return (
     <Router>
@@ -31,14 +20,14 @@ function App() {
         <Route 
           exact path="/" 
           element={<LoginPage  
-            setisLoggedIn={setisLoggedIn}
-            isLoggedIn={isLoggedIn}
+            stringsUserID={stringsUserID}
+            setStringsUserID={setStringsUserID}
             />} 
           
           />
         <Route exact path="/chat" 
           element={
-            <Protected isLoggedIn={isLoggedIn}>
+            <Protected stringsUserID={stringsUserID}>
               <ChatPage />
             </Protected>
           } 
