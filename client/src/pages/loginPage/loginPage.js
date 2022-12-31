@@ -10,6 +10,8 @@ const LoginPage = props => {
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [providedUsername, setUsername] = useState('');
   const [providedPassword, setPassword] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState('');
+
 
   async function loginUser(username, password) {
     try {
@@ -46,10 +48,9 @@ const LoginPage = props => {
           <div className="row">
           {showCreateForm ? 
             <SignupForm 
-              // setUsername={setUsername}
-              // setPassword={setPassword}
-              // setPasswordCheck={setPasswordCheck}
-   
+              setUsername={setUsername}
+              setPassword={setPassword}
+              setPasswordCheck={setPasswordCheck}
             /> : 
             <LoginForm 
               setUsername={setUsername}
@@ -57,8 +58,6 @@ const LoginPage = props => {
               setPassword={setPassword}
               providedPassword={providedPassword}
               loginUser={loginUser}
-              // setisLoggedIn={props.setisLoggedIn}
-              // isLoggedIn={props.isLoggedIn}
               stringsUserID={props.stringsUserID}
               setStringsUserID={props.setStringsUserID}
             />
