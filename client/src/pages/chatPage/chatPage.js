@@ -4,7 +4,7 @@ import './chatPage.scss';
 import TextBubble from '../../components/textBubble';
 import { ChannelName } from '../../components/channelName';
 import { ActiveUser } from '../../components/activeUser';
-import { Nav } from '../../components/nav';
+import  Nav  from '../../components/nav';
 import TextInput from '../../components/textInput';
 
 
@@ -12,7 +12,9 @@ import TextInput from '../../components/textInput';
 const ChatPage = props => {
     return (
         <main className="container" id="chat-page-container">
-            <Nav />
+            <Nav 
+            setStringsUserID={props.setStringsUserID}
+            />
             <div className="row" id="jumbotron-row">
                 <div className="col-md-2 jumbo-cols" id="channels-col">
                     <h2 className="text-center">Channels</h2>

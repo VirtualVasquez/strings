@@ -28,7 +28,10 @@ function App() {
         <Route exact path="/chat" 
           element={
             <Protected stringsUserID={stringsUserID}>
-              <ChatPage />
+              <ChatPage 
+                stringsUserID={stringsUserID}
+                setStringsUserID={setStringsUserID}
+              />
             </Protected>
           } 
          />
