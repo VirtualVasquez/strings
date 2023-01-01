@@ -9,6 +9,8 @@ const SignupForm = props => {
   //   console.log(props.passwordCheck);
   // }
 
+  
+
     return (
       <div className="col-md-6 offset-md-3">
 

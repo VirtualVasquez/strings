@@ -41,12 +41,12 @@ const login = (body) => {
 
 const createUser = (body) => {
     return new Promise(function(resolve, reject) {
-        const {user_id, user_name, user_pass, created_date } = body;
-        pool.query('INSERT INTO users (user_id, user_name, user_pass, created_date) VALUES ($1, $2, $3, $4) RETURNING *', [user_id, user_name, user_pass, created_date], (error, results) => {
+        const {user_name, user_pass, pass_check } = body;
+        pool.query('INSERT INTO users (user_name, user_pass) VALUES ($1, $2) RETURNING *', [user_name, user_pass], (error, results) => {
             if(error){
                 reject(error)
             }
-            resolve(`A new user has been added: ${results.rows[0]}`)
+            resolve(`A new user has been added`)
         })
     })
 }
