@@ -46,6 +46,13 @@ const createUser = (body) => {
             if(error){
                 reject(error)
             }
+            if(user_pass != pass_check){
+                resolve("The two passwords do not match.")
+            }
+            if(user_pass === pass_check){
+                resolve(results);
+            }
+
             resolve(`A new user has been added`)
         })
     })

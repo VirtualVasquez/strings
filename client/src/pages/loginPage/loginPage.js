@@ -8,9 +8,9 @@ import axios from "axios";
 const LoginPage = props => {
 
   const [showCreateForm, setShowCreateForm] = useState(false);
-  const [providedUsername, setUsername] = useState('');
-  const [providedPassword, setPassword] = useState('');
-  const [passwordCheck, setPasswordCheck] = useState('');
+  const [providedUsername, setUsername] = useState(null);
+  const [providedPassword, setPassword] = useState(null);
+  const [passwordCheck, setPasswordCheck] = useState(null);
 
 
   async function loginUser(username, password) {
@@ -20,6 +20,20 @@ const LoginPage = props => {
         user_pass: password,
       });
       localStorage.setItem("strings_user_id", response.data.user_id)
+      window.location.replace('/chat');
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+  async function createUser(username, password, passcheck) {
+    try {
+      const response = await axios.post('http://localhost:3001/api/users', {
+        user_name: username,
+        user_pass: password,
+        pass_check: passcheck
+      });
+      localStorage.setItem("strings_user_id",response.data.rows[0].user_id)
       window.location.replace('/chat');
     } catch (error) {
       console.error(error);
@@ -54,6 +68,7 @@ const LoginPage = props => {
               setUsername={setUsername}
               setPassword={setPassword}
               setPasswordCheck={setPasswordCheck}
+              createUser={createUser}
             /> : 
             <LoginForm 
               setUsername={setUsername}

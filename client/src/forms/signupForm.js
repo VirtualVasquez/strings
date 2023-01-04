@@ -1,13 +1,41 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 const SignupForm = props => {
+  const {providedUsername, providedPassword, passwordCheck, setUsername, setPassword, setPasswordCheck, createUser} = props
+  const [errorMessage, setErrorMessage] = useState('');
 
-  // const formCheck = (event) => {
-  //   event.preventDefault();
-  //   console.log(props.providedUsername);
-  //   console.log(props.providedPassword);
-  //   console.log(props.passwordCheck);
-  // }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if(!providedUsername){
+      setErrorMessage('Please provide a username');
+      return;
+    }
+    if(providedUsername.includes(' ')){
+      setErrorMessage('No whitespace is allowed for the username');
+      return;
+    }
+    if(!providedPassword){
+      setErrorMessage('Please provide a password');
+      return;
+    }
+    if(providedPassword.includes(' ')){
+      setErrorMessage('No whitespace is allowed for the password');
+      return;
+    }
+    if(!passwordCheck){
+      setErrorMessage('Please validate your password');
+      return;
+    }
+    if(providedPassword && providedPassword != passwordCheck){
+      setErrorMessage('The passwords do not match');
+      return;
+    }
+
+    createUser(providedUsername, providedPassword, passwordCheck);
+  }
+
+
 
   
 
@@ -22,35 +50,36 @@ const SignupForm = props => {
                 type="createUsername" 
                 className="form-control" 
                 id="createUsername"
-                onChange={e => props.setUsername(e.target.value)}
+                onChange={e => setUsername(e.target.value)}
               >
               </input>
             </div>
             <div className="mb-3">
               <label htmlFor="createPassword" className="form-label">Password</label>
-              <input 
+              <input
                 type="createPassword" 
                 className="form-control" 
                 id="createPassword"
-                onChange={e => props.setPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
               >
               </input>
             </div>
             <div className="mb-3">
               <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
-              <input 
+              <input
                 type="confirmPassword" 
                 className="form-control" 
                 id="confirmPassword"
-                onChange={e => props.setPasswordCheck(e.target.value)}
+                onChange={e => setPasswordCheck(e.target.value)}
               >
               </input>
             </div>
           </div>
+          <p>{errorMessage}</p>
           <button 
             type="submit" 
             className="btn col-12 btn-warning"
-            // onClick={ formCheck}
+            onClick={handleSubmit}
           >
             Submit
           </button>
