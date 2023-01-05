@@ -3,7 +3,7 @@ import axios from 'axios';
 import './chatPage.scss';
 import TextBubble from '../../components/textBubble';
 import { ChannelName } from '../../components/channelName';
-import { ActiveUser } from '../../components/activeUser';
+import  ChannelMember  from '../../components/ChannelMember';
 import  Nav  from '../../components/nav';
 import TextInput from '../../components/textInput';
 
@@ -41,7 +41,14 @@ const ChatPage = props => {
                 </div> */}
                 <div className="col-md-2 offset-1 jumbo-cols" id="users-col">
                     <h2 className="text-center">Active</h2>
-                    <ActiveUser />
+                    {Array.isArray(users) ? users.map(function(user, index){
+                      return(
+                        <ChannelMember
+                          username={user.user_name}
+                        />
+                      )
+                    }): null
+                    }
                 </div>
                 <div className="col-md-8 jumbo-cols texts-col">
                     <h2 className="text-center">ChannelName</h2>

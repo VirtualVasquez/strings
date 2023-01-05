@@ -20,6 +20,12 @@
             border-width: 1px 1px 1px 1px;
             border-style: solid;
             border-color: black;
+            &#users-col{
+                *{
+                    width: 100%;
+                    text-align: left;
+                }
+            }
             &.texts-col{
                 display: flex;
                 flex-direction: column;
