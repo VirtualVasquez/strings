@@ -12,6 +12,7 @@ import TextInput from '../../components/textInput';
 const ChatPage = props => {
 
     const [users, setUsers] = useState(null);
+    const [messages, setMessages] = useState(null);
 
     async function getUsers() {
         try {
@@ -20,11 +21,23 @@ const ChatPage = props => {
         } catch (error) {
           console.error(error);
         }
+    }
+
+    async function getMessages(){
+      try{
+        const response = await axios.get('http://localhost:3001/api/messages');
+        setMessages(response.data);
+      } catch (error) {
+        console.error(error);
       }
+    }
 
       useEffect(() => {
         getUsers();
+        getMessages();
       },[])
+
+      console.log(messages);
 
 
 
@@ -43,6 +56,7 @@ const ChatPage = props => {
                     {Array.isArray(users) ? users.map(function(user, index){
                       return(
                         <ChannelMember
+                          key={index}
                           username={user.user_name}
                         />
                       )
@@ -52,7 +66,17 @@ const ChatPage = props => {
                 <div className="col-md-8 jumbo-cols texts-col">
                     <h2 className="text-center">ChannelName</h2>
                     <div id="channel-history">
-                        <TextBubble />
+                    {Array.isArray(messages) ? messages.map(function(message, index){
+                      return(
+                        <TextBubble 
+                          messageID={message.message_id}
+                          userID={message.user_id}
+                          text={message.message_text}
+                          createdDate={message.created_date} 
+                        />
+                      )
+                    }): null
+                    }
                     </div>
                     <TextInput />                                             
                 </div>
