@@ -26,7 +26,6 @@ const ChatPage = props => {
         getUsers();
       },[])
 
-      console.log(users);
 
 
     return (
