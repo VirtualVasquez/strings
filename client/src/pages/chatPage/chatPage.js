@@ -72,6 +72,7 @@ const ChatPage = props => {
                     {Array.isArray(messages) ? messages.map(function(message, index){
                       return(
                         <TextBubble 
+                          key={index}
                           messageID={message.message_id}
                           userID={message.user_id}
                           username={matchNameToMessage(message.user_id)}
