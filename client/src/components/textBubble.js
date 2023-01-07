@@ -4,7 +4,7 @@ const TextBubble = props => {
     const { messageID, userID, text, createdDate } = props;
 
     return (
-        <div className="row">
+        // <div className="row">
             <div 
             className=
             {`textBubble 
@@ -15,7 +15,7 @@ const TextBubble = props => {
                 <h6>{userID}</h6>
                 <p>{text}</p>
             </div>
-        </div>
+        // </div>
 
     );
 }
