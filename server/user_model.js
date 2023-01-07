@@ -11,7 +11,7 @@ const pool = new Pool({
 
 const getUsers = () => {
     return new Promise(function(resolve, reject){
-        pool.query('SELECT user_name FROM users', (error, results) => {
+        pool.query('SELECT user_name, user_id FROM users', (error, results) => {
             if (error){
                 reject(error)
             }

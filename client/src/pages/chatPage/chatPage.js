@@ -14,6 +14,10 @@ const ChatPage = props => {
     const [users, setUsers] = useState(null);
     const [messages, setMessages] = useState(null);
 
+    function matchNameToMessage(userID){
+        return users.find(user => user.user_id === userID).user_name;
+    }
+
     async function getUsers() {
         try {
           const response = await axios.get('http://localhost:3001/api/users');
@@ -37,7 +41,6 @@ const ChatPage = props => {
         getMessages();
       },[])
 
-      console.log(messages);
 
 
 
@@ -71,6 +74,7 @@ const ChatPage = props => {
                         <TextBubble 
                           messageID={message.message_id}
                           userID={message.user_id}
+                          username={matchNameToMessage(message.user_id)}
                           text={message.message_text}
                           createdDate={message.created_date} 
                         />
