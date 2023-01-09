@@ -14,9 +14,7 @@ const ChatPage = props => {
     const [users, setUsers] = useState(null);
     const [messages, setMessages] = useState(null);
 
-    function matchNameToMessage(userID){
-        return users.find(user => user.user_id === userID).user_name;
-    }
+
 
     async function getUsers() {
         try {
@@ -35,6 +33,16 @@ const ChatPage = props => {
         console.error(error);
       }
     }
+
+    function matchNameToMessage(userID){
+      if(users){
+        let userBody = users.find(user => user.user_id === userID);
+
+        if(userBody){
+          return userBody.user_name
+        }
+      }
+  }
 
       useEffect(() => {
         getUsers();

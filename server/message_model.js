@@ -22,12 +22,12 @@ const getMessages = () => {
 
 const createMessage = (body) => {
     return new Promise(function(resolve, reject) {
-        const {id, userid, text, createddate } = body;
-        pool.query('INSERT INTO messages (message_id, user_id, message_text, created_date) VALUES ($1, $2, $3, $4) RETURNING *', [message_id, user_id, message_text, created_date], (error, results) => {
+        const {userid, text} = body;
+        pool.query('INSERT INTO messages (user_id, message_text) VALUES ($1, $2) RETURNING *', [userid, text], (error, results) => {
             if(error){
                 reject(error)
             }
-            resolve(`A new message has been created: ${results.rows[0]}`)
+            resolve(results)
         })
     })
 }
