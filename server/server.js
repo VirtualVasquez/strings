@@ -40,6 +40,7 @@ app.get("/api/messages", (req, res) => {
 
 //Create a chat message 
 app.post("/api/messages", (req, res) => {
+    console.log(req.params, req.body, req.query);
     message_model.createMessage(req.body).then(response => {
         res.status(200).send(response);
     })

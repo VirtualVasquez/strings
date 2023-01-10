@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import './chatPage.scss';
 import TextBubble from '../../components/textBubble';
-import { ChannelName } from '../../components/channelName';
+// import { ChannelName } from '../../components/channelName';
 import  ChannelMember  from '../../components/ChannelMember';
 import  Nav  from '../../components/nav';
 import TextInput from '../../components/textInput';
@@ -13,6 +13,7 @@ const ChatPage = props => {
 
     const [users, setUsers] = useState(null);
     const [messages, setMessages] = useState(null);
+    const [textMessage, setTextMessage] = useState("");
 
 
 
@@ -42,6 +43,19 @@ const ChatPage = props => {
           return userBody.user_name
         }
       }
+  }
+
+  async function pushTextMessage(text) {
+    try {
+      await axios.post('http://localhost:3001/api/messages', {
+        userid: props.stringsUserID,
+        text: text,
+      });
+    } catch (error) {
+      console.error(error);
+    } finally{
+      console.log(getMessages());
+    }
   }
 
       useEffect(() => {
@@ -91,7 +105,12 @@ const ChatPage = props => {
                     }): null
                     }
                     </div>
-                    <TextInput />                                             
+                    <TextInput 
+                      textMessage={textMessage}
+                      setTextMessage={setTextMessage}
+                      pushTextMessage={pushTextMessage}
+                      getMessages={getMessages}
+                    />                                             
                 </div>
                 {/* <div className="col-md-2 jumbo-cols" id="users-col">
                     <h2 className="text-center">Active</h2>
