@@ -6,6 +6,7 @@ import React from 'react';
         const handleSubmit = (event) => {
             event.preventDefault();
             pushTextMessage(textMessage);
+            setTextMessage("");
         }
 
     return (
