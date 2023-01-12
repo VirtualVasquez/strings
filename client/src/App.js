@@ -10,6 +10,10 @@ import ChatPage from './pages/chatPage/chatPage.js';
 import Protected from "./helpers/Protected";
 import './App.scss';
 
+import socketIO from 'socket.io-client';
+
+const socket = socketIO.connect('http://localhost:3001');
+
 function App() {
   const[stringsUserID, setStringsUserID] = useState(localStorage.getItem("strings_user_id"));
   
@@ -22,6 +26,7 @@ function App() {
           element={<LoginPage  
             stringsUserID={stringsUserID}
             setStringsUserID={setStringsUserID}
+            socket={socket}
             />} 
           
           />
@@ -31,6 +36,7 @@ function App() {
               <ChatPage 
                 stringsUserID={stringsUserID}
                 setStringsUserID={setStringsUserID}
+                socket={socket}
               />
             </Protected>
           } 
