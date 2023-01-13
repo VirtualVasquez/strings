@@ -2,10 +2,11 @@ const express = require('express');
 const app = express();
 const port = 3001;
 
-const http = require('http').Server(app);
-const cors = require('cors');
+// const cors = require('cors');
+// app.use(cors());
 
-app.use(cors());
+const http = require('http').createServer(app);
+const{Server} = require('socket.io');
 
 const bodyParser = require('body-parser');
 
@@ -14,13 +15,9 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-const socketIO = require('socket.io')(http, {
-    cors: {
-        origin: "http://localhost:3000"
-    }
-});
+const io = new Server(http, {cors:{origin:'http://localhost:3000'}})
 
-socketIO.on('connection', (socket) => {
+io.on('connection', (socket) => {
     console.log(`⚡: ${socket.id} user just connected!`);
     socket.on('disconnect', () => {
       console.log('🔥: A user disconnected');
@@ -97,10 +94,7 @@ app.post("/api/login", (req, res) => {
     })
 })
 
-// app.listen(port, () => {
-//     console.log(`example app listening on port ${port}`)
-// })
+http.listen(port, () => {
+    console.log(`example app listening on port ${port}`)
+})
 
-http.listen(PORT, () => {
-    console.log(`Server listening on ${PORT}`);
-  });
