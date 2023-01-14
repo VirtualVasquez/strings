@@ -3,11 +3,11 @@ import React from 'react';
     const TextInput = props => {
         const { textMessage, setTextMessage, pushTextMessage} = props;
 
-        const handleSubmit = (event) => {
-            event.preventDefault();
-            pushTextMessage(textMessage);
-            setTextMessage("");
-        }
+        // const handleSubmit = (event) => {
+        //     event.preventDefault();
+        //     pushTextMessage(textMessage);
+        //     setTextMessage("");
+        // }
 
     return (
         <div id="text-form">
@@ -18,9 +18,9 @@ import React from 'react';
                     value={textMessage}
                     onChange={e => setTextMessage(e.target.value)}
                     ></input>
-                <button 
+                 <button 
                     type="submit"
-                    onClick={handleSubmit}
+                    onClick={pushTextMessage}
                     className="btn btn-primary col-md-2"
                 > 
                     Send

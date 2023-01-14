@@ -32,7 +32,7 @@ function App() {
           element={<LoginPage  
             stringsUserID={stringsUserID}
             setStringsUserID={setStringsUserID}
-            io={io}
+            socket={socket}
             />} 
           
           />
@@ -42,7 +42,7 @@ function App() {
               <ChatPage 
                 stringsUserID={stringsUserID}
                 setStringsUserID={setStringsUserID}
-                io={io}
+                socket={socket}
               />
             </Protected>
           } 

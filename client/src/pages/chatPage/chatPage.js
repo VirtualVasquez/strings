@@ -11,10 +11,12 @@ import TextInput from '../../components/textInput';
 
 const ChatPage = props => {
 
-    const [users, setUsers] = useState(null);
-    const [messages, setMessages] = useState(null);
-    const [textMessage, setTextMessage] = useState("");
+  const {stringsUserID, setStringsUserID, socket} = props;
 
+    const [users, setUsers] = useState(null);
+    const [messages, setMessages] = useState([]);
+    // const [messages, setMessages] = useState(null);
+    const [textMessage, setTextMessage] = useState("");
 
 
     async function getUsers() {
@@ -38,6 +40,7 @@ const ChatPage = props => {
     function matchNameToMessage(userID){
       if(users){
         let userBody = users.find(user => user.user_id === userID);
+        console.log(userBody);
 
         if(userBody){
           return userBody.user_name
@@ -45,23 +48,37 @@ const ChatPage = props => {
       }
   }
 
-  async function pushTextMessage(text) {
-    try {
-      await axios.post('http://localhost:3001/api/messages', {
-        userid: props.stringsUserID,
-        text: text,
-      });
-    } catch (error) {
-      console.error(error);
-    } finally{
-      console.log(getMessages());
+  // async function pushTextMessage(text) {
+  //   try {
+  //     await axios.post('http://localhost:3001/api/messages', {
+  //       userid: stringsUserID,
+  //       text: text,
+  //     });
+  //   } catch (error) {
+  //     console.error(error);
+  //   } finally{
+  //     console.log(getMessages());
+  //   }
+  // }
+
+   const pushTextMessage = (e) => {
+    e.preventDefault();
+    if(textMessage.trim()){
+      socket.emit('message', {
+        user_id: stringsUserID,
+        message_text: textMessage,
+        socketID: socket.id
+      })
     }
+    setTextMessage('');
+    console.log(messages)
   }
 
       useEffect(() => {
-        getUsers();
-        getMessages();
-      },[])
+        // getUsers();
+        // getMessages();
+        socket.on('messageResponse', (data) => setMessages([...messages, data]));
+      },[socket, messages])
 
 
 
@@ -69,7 +86,7 @@ const ChatPage = props => {
     return (
         <main className="container" id="chat-page-container">
             <Nav 
-            setStringsUserID={props.setStringsUserID}
+            setStringsUserID={setStringsUserID}
             />
             <div className="row" id="jumbotron-row">
                 {/* <div className="col-md-2 jumbo-cols" id="channels-col">
@@ -97,7 +114,8 @@ const ChatPage = props => {
                           key={index}
                           messageID={message.message_id}
                           userID={message.user_id}
-                          username={matchNameToMessage(message.user_id)}
+                          // username={matchNameToMessage(message.user_id)}
+                          matchNameToMessage={matchNameToMessage}
                           text={message.message_text}
                           createdDate={message.created_date} 
                         />
@@ -109,7 +127,7 @@ const ChatPage = props => {
                       textMessage={textMessage}
                       setTextMessage={setTextMessage}
                       pushTextMessage={pushTextMessage}
-                      getMessages={getMessages}
+                      // getMessages={getMessages}
                     />                                             
                 </div>
                 {/* <div className="col-md-2 jumbo-cols" id="users-col">

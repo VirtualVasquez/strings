@@ -2,11 +2,11 @@ const express = require('express');
 const app = express();
 const port = 3001;
 
-// const cors = require('cors');
-// app.use(cors());
-
 const http = require('http').createServer(app);
 const{Server} = require('socket.io');
+
+// const cors = require('cors');
+// app.use(cors());
 
 const bodyParser = require('body-parser');
 
@@ -19,10 +19,18 @@ const io = new Server(http, {cors:{origin:'http://localhost:3000'}})
 
 io.on('connection', (socket) => {
     console.log(`⚡: ${socket.id} user just connected!`);
+
+    socket.on('message', (data) => {
+        console.log(data);
+        io.emit('messageResponse', data);
+    })
+
     socket.on('disconnect', () => {
       console.log('🔥: A user disconnected');
     });
 });
+
+
 
 const user_model = require('./user_model.js');
 const message_model = require('./message_model');
@@ -40,8 +48,11 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.listen(80, function () {
-  console.log('CORS-enabled web server listening on port 80')
+// app.listen(80, function () {
+//   console.log('CORS-enabled web server listening on port 80')
+// })
+http.listen(port, () => {
+    console.log(`example app listening on port ${port}`)
 })
 
 
@@ -94,7 +105,5 @@ app.post("/api/login", (req, res) => {
     })
 })
 
-http.listen(port, () => {
-    console.log(`example app listening on port ${port}`)
-})
+
 
