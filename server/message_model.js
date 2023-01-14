@@ -32,7 +32,6 @@ const createMessage = (body) => {
     })
 }
 
-
 module.exports = {
     getMessages,
     createMessage

@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import './chatPage.scss';
 import TextBubble from '../../components/textBubble';
-// import { ChannelName } from '../../components/channelName';
 import  ChannelMember  from '../../components/ChannelMember';
 import  Nav  from '../../components/nav';
 import TextInput from '../../components/textInput';
@@ -15,7 +14,6 @@ const ChatPage = props => {
 
     const [users, setUsers] = useState(null);
     const [messages, setMessages] = useState([]);
-    // const [messages, setMessages] = useState(null);
     const [textMessage, setTextMessage] = useState("");
 
 
@@ -48,20 +46,7 @@ const ChatPage = props => {
       }
   }
 
-  // async function pushTextMessage(text) {
-  //   try {
-  //     await axios.post('http://localhost:3001/api/messages', {
-  //       userid: stringsUserID,
-  //       text: text,
-  //     });
-  //   } catch (error) {
-  //     console.error(error);
-  //   } finally{
-  //     console.log(getMessages());
-  //   }
-  // }
-
-    async function messageToDB() {
+  async function messageToDB() {
     try {
       await axios.post('http://localhost:3001/api/messages', {
         userid: stringsUserID,
@@ -84,9 +69,7 @@ const ChatPage = props => {
     }
   }
 
-
-
-   const pushTextMessage = (e) => {
+  const pushTextMessage = (e) => {
     e.preventDefault();
     messageToDB();
     messagetoIO();
