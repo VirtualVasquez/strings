@@ -61,8 +61,20 @@ const ChatPage = props => {
   //   }
   // }
 
-   const pushTextMessage = (e) => {
-    e.preventDefault();
+    async function messageToDB() {
+    try {
+      await axios.post('http://localhost:3001/api/messages', {
+        userid: stringsUserID,
+        text: textMessage,
+      });
+    } catch (error) {
+      console.error(error);
+    } finally{
+      console.log(getMessages());
+    }
+  }
+
+  function messagetoIO(){
     if(textMessage.trim()){
       socket.emit('message', {
         user_id: stringsUserID,
@@ -70,13 +82,21 @@ const ChatPage = props => {
         socketID: socket.id
       })
     }
+  }
+
+
+
+   const pushTextMessage = (e) => {
+    e.preventDefault();
+    messageToDB();
+    messagetoIO();
     setTextMessage('');
     console.log(messages)
   }
 
       useEffect(() => {
         // getUsers();
-        // getMessages();
+        getMessages();
         socket.on('messageResponse', (data) => setMessages([...messages, data]));
       },[socket, messages])
 
