@@ -20,6 +20,17 @@ const getUsers = () => {
     })
 }
 
+const getUser = (userID) => {
+    return new Promise(function(resolve, reject){
+        pool.query('SELECT user_name FROM users WHERE user_id = $1', [userID], (error, results) => {
+            if (error){
+                reject(error)
+            }
+            resolve(results.rows);
+        })
+    })
+}
+
 
 const login = (body) => {
     return new Promise(function(resolve, reject){
@@ -61,6 +72,7 @@ const createUser = (body) => {
 
 module.exports = {
     getUsers,
+    getUser,
     login,
     createUser,
   }

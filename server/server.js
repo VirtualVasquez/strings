@@ -73,6 +73,15 @@ app.get("/api/users", (req, res) => {
     })
 })
 
+//Get one user based on ID
+app.get("/api/user/:id", (req, res) => {
+    user_model.getUser(req.params.id)
+    .then(response => {
+        console.log(response);
+        res.status(200).send(response);
+    })
+})
+
 //Create a user
 app.post("/api/users", (req, res) => {
     user_model.createUser(req.body).then(response => {
