@@ -17,33 +17,22 @@ const ChatPage = props => {
     const [textMessage, setTextMessage] = useState("");
 
 
-    async function getUsers() {
-        try {
-          const response = await axios.get('http://localhost:3001/api/users');
-          setUsers(response.data);
-        } catch (error) {
-          console.error(error);
-        }
+    // async function getUsers() {
+    //     try {
+    //       const response = await axios.get('http://localhost:3001/api/users');
+    //       setUsers(response.data);
+    //     } catch (error) {
+    //       console.error(error);
+    //     }
+    // }
+
+  async function getMessages(){
+    try{
+      const response = await axios.get('http://localhost:3001/api/messages');
+      setMessages(response.data);
+    } catch (error) {
+      console.error(error);
     }
-
-    async function getMessages(){
-      try{
-        const response = await axios.get('http://localhost:3001/api/messages');
-        setMessages(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    function matchNameToMessage(userID){
-      if(users){
-        let userBody = users.find(user => user.user_id === userID);
-        console.log(userBody);
-
-        if(userBody){
-          return userBody.user_name
-        }
-      }
   }
 
   async function messageToDB() {
@@ -78,7 +67,6 @@ const ChatPage = props => {
   }
 
       useEffect(() => {
-        // getUsers();
         getMessages();
         socket.on('messageResponse', (data) => setMessages([...messages, data]));
       },[socket, messages])
@@ -117,8 +105,6 @@ const ChatPage = props => {
                           key={index}
                           messageID={message.message_id}
                           userID={message.user_id}
-                          // username={matchNameToMessage(message.user_id)}
-                          matchNameToMessage={matchNameToMessage}
                           text={message.message_text}
                           createdDate={message.created_date} 
                         />
