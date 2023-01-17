@@ -6,6 +6,8 @@ import axios from "axios";
 
 
 const LoginPage = props => {
+   
+  const {stringsUserID, setStringsUserID, socket} = props;
 
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [providedUsername, setUsername] = useState(null);
@@ -19,7 +21,8 @@ const LoginPage = props => {
         user_name: username,
         user_pass: password,
       });
-      localStorage.setItem("strings_user_id", response.data.user_id)
+      localStorage.setItem("strings_user_id", response.data.user_id);
+      socket.emit('newUser', {username, socketID: socket.id});
       window.location.replace('/chat');
     } catch (error) {
       console.error(error);
@@ -33,7 +36,8 @@ const LoginPage = props => {
         user_pass: password,
         pass_check: passcheck
       });
-      localStorage.setItem("strings_user_id",response.data.rows[0].user_id)
+      localStorage.setItem("strings_user_id",response.data.rows[0].user_id);
+      socket.emit('newUser', {username, socketID: socket.id});
       window.location.replace('/chat');
     } catch (error) {
       console.error(error);
@@ -41,7 +45,7 @@ const LoginPage = props => {
   }
 
   useEffect( () => {
-    if(props.stringsUserID){
+    if(stringsUserID){
       window.location.replace('/chat');
     }
   });
@@ -69,6 +73,7 @@ const LoginPage = props => {
               setPassword={setPassword}
               setPasswordCheck={setPasswordCheck}
               createUser={createUser}
+              socket={socket}
             /> : 
             <LoginForm 
               setUsername={setUsername}
@@ -76,8 +81,9 @@ const LoginPage = props => {
               setPassword={setPassword}
               providedPassword={providedPassword}
               loginUser={loginUser}
-              stringsUserID={props.stringsUserID}
-              setStringsUserID={props.setStringsUserID}
+              stringsUserID={stringsUserID}
+              setStringsUserID={setStringsUserID}
+              socket={socket}
             />
           }
           </div>

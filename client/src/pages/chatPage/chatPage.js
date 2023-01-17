@@ -12,7 +12,7 @@ const ChatPage = props => {
 
   const {stringsUserID, setStringsUserID, socket} = props;
 
-    const [users, setUsers] = useState(null);
+    const [users, setUsers] = useState();
     const [messages, setMessages] = useState([]);
     const [textMessage, setTextMessage] = useState("");
 
@@ -66,12 +66,10 @@ const ChatPage = props => {
     console.log(messages)
   }
 
-      useEffect(() => {
-        getMessages();
-        socket.on('messageResponse', (data) => setMessages([...messages, data]));
-      },[socket, messages])
-
-
+  useEffect(() => {
+    getMessages();
+    socket.on('messageResponse', (data) => setMessages([...messages, data]));
+  },[socket, messages])
 
 
     return (

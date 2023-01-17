@@ -2,9 +2,11 @@ import React from 'react';
 
 const LoginForm = props => {
 
+  const {providedUsername, providedPassword, setPassword, setUsername, loginUser } = props;
+
   function handleSubmit(event) {
     event.preventDefault();
-    props.loginUser(props.providedUsername, props.providedPassword);
+    loginUser(providedUsername, providedPassword);
   }
 
 
@@ -19,7 +21,7 @@ const LoginForm = props => {
                     type="username" 
                     className="form-control" 
                     id="username"
-                    onChange={e => props.setUsername(e.target.value)}
+                    onChange={e => setUsername(e.target.value)}
                   >
                   </input>
                 </div>
@@ -30,7 +32,7 @@ const LoginForm = props => {
                     type="password" 
                     className="form-control" 
                     id="password"
-                    onChange={e => props.setPassword(e.target.value)}
+                    onChange={e => setPassword(e.target.value)}
                   >
                   </input>
                 </div>
