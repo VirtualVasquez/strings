@@ -22,6 +22,7 @@ const LoginPage = props => {
         user_pass: password,
       });
       localStorage.setItem("strings_user_id", response.data.user_id);
+      localStorage.setItem('userName', username);
       socket.emit('newUser', {username, socketID: socket.id});
       window.location.replace('/chat');
     } catch (error) {

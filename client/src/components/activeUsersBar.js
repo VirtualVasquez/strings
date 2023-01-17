@@ -16,7 +16,7 @@ const ActiveUsersBar = ({ socket }) => {
             return(
                 <ChannelMember
                   key={index}
-                  username={user.user_name}
+                  username={user.userName}
                 />
             )
         })}
