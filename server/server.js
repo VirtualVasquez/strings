@@ -23,14 +23,14 @@ io.on('connection', (socket) => {
         io.emit('messageResponse', data);
     })
 
-    //listens when a new user joins the server
-    socket.on('newUser', (data) => {
-        //add the new user to the list of users
-        users.push(data);
-        //console.log(users);
-        //sends the list of users to the client
-        io.emit('newUserResponse', users);
-    })
+    // //listens when a new user joins the server
+    // socket.on('newUser', (data) => {
+    //     //add the new user to the list of users
+    //     users.push(data);
+    //     //console.log(users);
+    //     //sends the list of users to the client
+    //     io.emit('newUserResponse', users);
+    // })
 
     socket.on('disconnect', () => {
       console.log('🔥: A user disconnected');
@@ -73,7 +73,7 @@ app.get("/api/messages", (req, res) => {
 
 //Create a chat message 
 app.post("/api/messages", (req, res) => {
-    console.log(req.params, req.body, req.query);
+    // console.log(req.params, req.body, req.query);
     message_model.createMessage(req.body).then(response => {
         res.status(200).send(response);
     })
@@ -94,7 +94,7 @@ app.get("/api/users", (req, res) => {
 app.get("/api/user/:id", (req, res) => {
     user_model.getUser(req.params.id)
     .then(response => {
-        console.log(response);
+        // console.log(response);
         res.status(200).send(response);
     })
 })
@@ -112,7 +112,7 @@ app.post("/api/users", (req, res) => {
 //Get a single user and login
 app.post("/api/login", (req, res) => {
     user_model.login(req.body).then(response => {
-        console.log(req.body);
+        // console.log(req.body);
         res.status(200).send(response);
     })
     .catch(error => {

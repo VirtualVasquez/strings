@@ -32,9 +32,10 @@ const ChatPage = props => {
       });
     } catch (error) {
       console.error(error);
-    } finally{
-      console.log(getMessages());
-    }
+    } 
+    // finally{
+    //   console.log(getMessages());
+    // }
   }
 
   function messagetoIO(){
