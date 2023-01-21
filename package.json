@@ -19,5 +19,8 @@
   "dependencies": {
     "concurrently": "^7.6.0",
     "nodemon": "^2.0.20"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
   }
 }

@@ -26,7 +26,9 @@ const getUser = (userID) => {
             if (error){
                 reject(error)
             }
-            resolve(results.rows);
+            if(results){
+                resolve(results.rows);
+            }
         })
     })
 }
