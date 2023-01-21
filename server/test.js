@@ -12,8 +12,7 @@ describe('CreateMessage', () => {
             message_text: "Mocha Text Message"
         };
         const createdMessage = createdMessage(message);
-        expect(createdMessage).to.have.all.keys('id', 'text', 'senderId')
-        .to.have.all.keys('user_id', 'message_text', 'message_id', 'created_date').and.not.be.null;
+        expect(createdMessage).to.have.all.keys('user_id', 'message_text', 'message_id', 'created_date').and.not.be.null;
     });
 });
 
