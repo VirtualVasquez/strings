@@ -27,7 +27,7 @@ const createMessage = (body) => {
             if(error){
                 reject(error)
             }
-            resolve(results)
+            resolve(results.rows[0])
         })
     })
 }
