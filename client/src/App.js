@@ -40,7 +40,7 @@ function App() {
           element={
             <Protected stringsUserID={stringsUserID}>
               <ChatPage 
-                stringsUserID={stringsUserID}
+                stringsUseorID={stringsUserID}
                 setStringsUserID={setStringsUserID}
                 socket={socket}
               />

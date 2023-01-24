@@ -77,7 +77,7 @@ app.get("/api/users", (req, res) => {
 app.get("/api/user/:id", (req, res) => {
     user_model.getUser(req.params.id)
     .then(response => {
-        console.log(response);
+        // console.log(response);
         res.status(200).send(response);
     })
 })
