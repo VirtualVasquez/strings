@@ -23,20 +23,20 @@ io.on('connection', (socket) => {
         io.emit('messageResponse', data);
     })
 
-    // //listens when a new user joins the server
-    // socket.on('newUser', (data) => {
-    //     //add the new user to the list of users
-    //     users.push(data);
-    //     //console.log(users);
-    //     //sends the list of users to the client
-    //     io.emit('newUserResponse', users);
-    // })
+    //listens when a new user joins the server
+    socket.on('newUser', (data) => {
+        //add the new user to the list of users
+        users.push(data);
+        console.log(users);
+        //sends the list of users to the client
+        io.emit('newUserResponse', users);
+    })
 
     socket.on('disconnect', () => {
       console.log('🔥: A user disconnected');
       //updates the list of users when a user disconnects from the server
       users = users. filter((user) => user.io !== socket.id);
-      //console.log(users);
+      console.log(users);
       //Sends the list of users to the client
       io.emit('newUserResponse', users);
       socket.disconnect();
@@ -114,6 +114,8 @@ app.post("/api/login", (req, res) => {
     user_model.login(req.body).then(response => {
         // console.log(req.body);
         res.status(200).send(response);
+        //update users last_active column
+        //emit here
     })
     .catch(error => {
         res.status(500).send(error);
