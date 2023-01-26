@@ -70,6 +70,17 @@ const createUser = (body) => {
         })
     })
 }
+const deleteUser = (body) => {
+    const {user_id } = body;
+    return new Promise(function(resolve, reject) {
+        pool.query('DELETE FROM users WHERE user_id = $1', [user_id], (error, results) => {
+            if(error){
+                reject(error)
+            }
+            resolve(results);
+        })
+    })
+}
 
 
 module.exports = {
@@ -77,4 +88,5 @@ module.exports = {
     getUser,
     login,
     createUser,
+    deleteUser
   }

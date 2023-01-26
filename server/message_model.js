@@ -31,8 +31,20 @@ const createMessage = (body) => {
         })
     })
 }
+const deleteMessage = (body) => {
+    const { message_id } = body;
+    return new Promise(function(resolve, reject) {
+        pool.query('DELETE FROM messages WHERE message_id = $1', [message_id], (error, results) => {
+            if(error){
+                reject(error)
+            }
+            resolve(results)
+        })
+    })
+}
 
 module.exports = {
     getMessages,
-    createMessage
+    createMessage,
+    deleteMessage
   }

@@ -82,6 +82,16 @@ app.post("/api/messages", (req, res) => {
     })
 })
 
+//Delete a chat message 
+app.delete("/api/messages", (req, res) => {
+    message_model.deleteMessage(req.body).then(response => {
+        res.status(200).send(response);
+    })
+    .catch(error => {
+        res.status(500).send(error);
+    })
+})
+
 //Get all Users
 app.get("/api/users", (req, res) => {
     user_model.getUsers()
@@ -102,6 +112,16 @@ app.get("/api/user/:id", (req, res) => {
 //Create a user
 app.post("/api/users", (req, res) => {
     user_model.createUser(req.body).then(response => {
+        res.status(200).send(response);
+    })
+    .catch(error => {
+        res.status(500).send(error);
+    })
+})
+
+//Delete a user
+app.delete("/api/users", (req, res) => {
+    user_model.deleteUser(req.body).then(response => {
         res.status(200).send(response);
     })
     .catch(error => {

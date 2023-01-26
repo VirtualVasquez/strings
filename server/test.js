@@ -1,22 +1,45 @@
 const mocha = require('mocha');
 const chai = require('chai');
 const { expect } = require('chai');
-const { createMessage } = require('./message_model');
-const { login } = require('./user_model');
+const { createMessage, deleteMessage } = require('./message_model');
+const { login, createUser, deleteUser} = require('./user_model');
 
 
 describe('CreateMessage', () => {
     it('should push a message to the database', async() => {
+        let testUserId;
+        let testMessageId;
+
+        beforeEach(async() => {
+
+            let userData = {
+                user_name: "TEST",
+                user_pass: "TEST",
+                pass_check: "TEST"
+            }
+            // Create a test user
+            const testUser = await createUser(userData);
+            testUserId = testUser.id;
+        });
+    
+        afterEach(async() => {
+            // Delete the test user
+            await deleteUser(testUserId);
+            await deleteMessage(messageId);
+        });
+
         const message = {
-            userid: 1,
+            userid: testUserId,
             text: "Mocha Text Message"
         };
         const expectedMessage = {
-            user_id: 1,
+            user_id: testUserId,
             message_text: "Mocha Text Message"
         }
         const createdMessage = await createMessage(message);
+        testMessageId = createdMessage.message_id;
         expect(expectedMessage.user_id).to.equal(createdMessage.user_id);
+
     });
 });
 
