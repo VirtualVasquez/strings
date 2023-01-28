@@ -15,15 +15,27 @@ const ActiveUsersBar = ({ socket }) => {
       console.error(error);
     }
   }
-  // useEffect(() => {
-  //   socket.on('newUserResponse', (data) => setUsers(data));
-  //   console.log(users);
-  // }, [socket, users]);
 
   useEffect(() => {
     getActiveUsers();
     console.log("Active users:")
     console.log(activeUsers)
+
+// let obj = {id: 1, name: "John"};
+// let arr = [{id: 1, name: "Jane"}, {id: 2, name: "Bob"}];
+
+// let match = arr.some(element => element.id === obj.id && element.name === obj.name);
+// console.log(match); // Output: false
+
+
+    socket.on('update_user_activity', (updateActiveUser) => {
+      console.log(updateActiveUser); //WORKING!
+      // check if activer users contains the new active user
+      console.log(user)
+        // if it doesn't then add it to active users
+        // if it does then do nothing
+    });
+    console.log(activeUsers);
   }, []);
 
   return (

@@ -151,6 +151,7 @@ app.put("/api/users/update-last-active", (req, res) => {
     user_model.updateLastActive(req.body).then(response => {
         res.status(200).send(response);
         // emit here?
+        io.emit('update_user_activity', response.rows[0])
     })
     .catch(error => {
         res.status(500).send(error);
