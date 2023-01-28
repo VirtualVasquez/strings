@@ -73,7 +73,6 @@ app.get("/api/messages", (req, res) => {
 
 //Create a chat message 
 app.post("/api/messages", (req, res) => {
-    // console.log(req.params, req.body, req.query);
     message_model.createMessage(req.body).then(response => {
         res.status(200).send(response);
     })
@@ -111,7 +110,6 @@ app.get("/api/users/active", (req, res) => {
 app.get("/api/user/:id", (req, res) => {
     user_model.getUser(req.params.id)
     .then(response => {
-        // console.log(response);
         res.status(200).send(response);
     })
 })
@@ -139,7 +137,6 @@ app.delete("/api/users", (req, res) => {
 //Get a single user and login
 app.post("/api/login", (req, res) => {
     user_model.login(req.body).then(response => {
-        // console.log(req.body);
         res.status(200).send(response);
         //update users last_active column
         //emit here
