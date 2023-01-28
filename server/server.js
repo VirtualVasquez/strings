@@ -143,4 +143,11 @@ app.post("/api/login", (req, res) => {
 })
 
 
-
+app.put("/api/last-active", (req, res) => {
+    user_model.updateLastActive(req.body).then(response => {
+        res.status(200).send(response);
+    })
+    .catch(error => {
+        res.status(500).send(error);
+    })
+})

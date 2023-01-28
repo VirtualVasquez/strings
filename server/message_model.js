@@ -22,8 +22,8 @@ const getMessages = () => {
 
 const createMessage = (body) => {
     return new Promise(function(resolve, reject) {
-        const {userid, text} = body;
-        pool.query('INSERT INTO messages (user_id, message_text) VALUES ($1, $2) RETURNING *', [userid, text], (error, results) => {
+        const {user_id, message_text} = body;
+        pool.query('INSERT INTO messages (user_id, message_text) VALUES ($1, $2) RETURNING *', [user_id, message_text], (error, results) => {
             if(error){
                 reject(error)
             }

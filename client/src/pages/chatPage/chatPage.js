@@ -27,15 +27,15 @@ const ChatPage = props => {
   async function messageToDB() {
     try {
       await axios.post('http://localhost:3001/api/messages', {
-        userid: stringsUserID,
-        text: textMessage,
+        user_id: stringsUserID,
+        message_text: textMessage,
+      });
+      await axios.put('http://localhost:3001/api/last-active', {
+        user_id: stringsUserID
       });
     } catch (error) {
       console.error(error);
     } 
-    // finally{
-    //   console.log(getMessages());
-    // }
   }
 
   function messagetoIO(){
@@ -53,7 +53,6 @@ const ChatPage = props => {
     messageToDB();
     messagetoIO();
     setTextMessage('');
-    console.log(messages)
   }
 
   useEffect(() => {

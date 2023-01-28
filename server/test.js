@@ -34,34 +34,28 @@ describe('CreateMessage', () => {
     });
 });
 
-// describe('User login', () => {
-//     it('should login a user with correct credentials', async() => {
-//         let testUserName;
+describe('User login', () => {
+    it('should login a user with correct credentials', async() => {
+        let testUser = await createUser(userData);
 
-//         beforeEach(async() => {
-//             // Create a test user
-//             const testUser = await createUser(userData);
-//         });
-    
-//         afterEach(async() => {
-//             await deleteUser(testUserId);
-//         });
+        const user = {
+            user_name: testUser.user_name,
+            user_pass: testUser.user_pass,
+        };
+        const expectedUser = {
+            user_id: testUser.user_id,
+            user_name: testUser.user_name,
+            user_pass: testUser.user_pass,
+            created_date: testUser.created_date
+        };
+        const loggedInUser = await login(user);
 
-//         const user = {
-//             user_name: testUserName,
-//             user_pass: testUserPass,
-//         };
-//         const expectedUser = {
-//             user_id: testUserId,
-//             user_name: testUserName,
-//             user_pass: testUserPass,
-//             created_date: testCreatedDate
-//         };
-//         const loggedInUser = await login(user);
-//         expect(loggedInUser.user_id).to.equal(expectedUser.user_id);
-//         expect(loggedInUser.user_name).to.equal(expectedUser.user_name);
-//         expect(loggedInUser.user_pass).to.equal(expectedUser.user_pass);
-//         expect(loggedInUser.created_date).to.equal(expectedUser.created_date);
 
-//     });
-// });
+        expect(loggedInUser.user_id).to.equal(expectedUser.user_id);
+        expect(loggedInUser.user_name).to.equal(expectedUser.user_name);
+        expect(loggedInUser.user_pass).to.equal(expectedUser.user_pass);
+        expect(loggedInUser.created_date.toISOString()).to.equal(expectedUser.created_date.toISOString());
+
+        await deleteUser(testUser);
+    });
+});

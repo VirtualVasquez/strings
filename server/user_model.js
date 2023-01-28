@@ -51,6 +51,18 @@ const login = (body) => {
     })
 }
 
+const updateLastActive = (body) => {
+    return new Promise(function(resolve, reject){
+        const {user_id} = body;
+        pool.query('UPDATE users SET last_active = NOW() WHERE user_id = $1', [user_id], (error, results) => {
+            if(error){
+                reject(error)
+            }
+            resolve(results);
+        })
+    })
+}
+
 
 const createUser = (body) => {
     return new Promise(function(resolve, reject) {
@@ -88,5 +100,6 @@ module.exports = {
     getUser,
     login,
     createUser,
-    deleteUser
+    deleteUser,
+    updateLastActive
   }

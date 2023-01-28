@@ -23,6 +23,11 @@ const LoginPage = props => {
       });
       localStorage.setItem("strings_user_id", response.data.user_id);
       localStorage.setItem('userName', username);
+      await axios.put('http://localhost:3001/api/last-active',
+      {
+        user_id: response.data.user_id
+      }
+      );
       socket.emit('newUser', {username, socketID: socket.id});
       window.location.replace('/chat');
     } catch (error) {
@@ -38,6 +43,9 @@ const LoginPage = props => {
         pass_check: passcheck
       });
       localStorage.setItem("strings_user_id",response.data.rows[0].user_id);
+      await axios.put('http://localhost:3001/api/last-active', {
+        user_id: response.data.rows[0].user_id
+      });
       socket.emit('newUser', {username, socketID: socket.id});
       window.location.replace('/chat');
     } catch (error) {
