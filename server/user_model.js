@@ -20,6 +20,17 @@ const getUsers = () => {
     })
 }
 
+const getActiveUsers = () => {
+    return new Promise(function(resolve, reject){
+        pool.query("SELECT user_name, user_id FROM users WHERE last_active >= NOW() - INTERVAL '15 minutes'", (error, results) => {
+            if (error){
+                reject(error)
+            }
+            resolve(results.rows);
+        })
+    })
+}
+
 const getUser = (userID) => {
     return new Promise(function(resolve, reject){
         pool.query('SELECT user_name FROM users WHERE user_id = $1', [userID], (error, results) => {
@@ -101,5 +112,6 @@ module.exports = {
     login,
     createUser,
     deleteUser,
-    updateLastActive
+    updateLastActive,
+    getActiveUsers
   }

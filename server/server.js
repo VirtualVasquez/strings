@@ -100,6 +100,13 @@ app.get("/api/users", (req, res) => {
     })
 })
 
+//get all active users
+app.get("/api/users/active", (req, res) => {
+    user_model.getActiveUsers().then(response => {
+        res.status(200).send(response);
+    })
+})
+
 //Get one user based on ID
 app.get("/api/user/:id", (req, res) => {
     user_model.getUser(req.params.id)
@@ -143,9 +150,10 @@ app.post("/api/login", (req, res) => {
 })
 
 
-app.put("/api/last-active", (req, res) => {
+app.put("/api/users/update-last-active", (req, res) => {
     user_model.updateLastActive(req.body).then(response => {
         res.status(200).send(response);
+        // emit here?
     })
     .catch(error => {
         res.status(500).send(error);

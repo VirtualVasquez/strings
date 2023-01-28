@@ -30,7 +30,7 @@ const ChatPage = props => {
         user_id: stringsUserID,
         message_text: textMessage,
       });
-      await axios.put('http://localhost:3001/api/last-active', {
+      await axios.put('http://localhost:3001/api/users/update-last-active', {
         user_id: stringsUserID
       });
     } catch (error) {
