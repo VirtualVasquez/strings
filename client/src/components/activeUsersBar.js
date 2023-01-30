@@ -31,7 +31,7 @@ const ActiveUsersBar = ({ socket }) => {
 
   return (
     <div className="col-md-2 offset-1 jumbo-cols" id="users-col">
-      <h2 className="text-center">Active</h2>
+      <h3 className="text-center">Active Users</h3>
         {activeUsers.map(function(user, index){
             return(
                 <ChannelMember

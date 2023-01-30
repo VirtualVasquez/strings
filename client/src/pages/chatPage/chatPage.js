@@ -71,7 +71,7 @@ const ChatPage = props => {
                   socket={socket}
                 />
                 <div className="col-md-8 jumbo-cols texts-col">
-                    <h2 className="text-center">ChannelName</h2>
+                    <h2 className="text-center">The Only Channel</h2>
                     <div id="channel-history">
                     {Array.isArray(messages) ? messages.map(function(message, index){
                       return(
