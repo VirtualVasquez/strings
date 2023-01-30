@@ -101,13 +101,7 @@ const LoginPage = props => {
             <div className="col-md-6 offset-md-3">            
                 
                 <button 
-                className="btn btn-secondary col-md-6 col-12"
-                >
-                  Continue As Guest
-                </button>
-                
-                <button 
-                className="btn btn-danger col-md-6 col-12"
+                className="btn btn-danger col-12"
                 onClick={() => setShowCreateForm(!showCreateForm)}
                 >
                   {showCreateForm ? "Sign-In to Existing Account" : "Create An Account"}
