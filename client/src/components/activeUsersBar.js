@@ -17,8 +17,6 @@ const ActiveUsersBar = ({ socket }) => {
 
   useEffect(() => {
     getActiveUsers();
-    console.log("Active users:")
-    console.log(activeUsers)
 
     socket.on('update_user_activity', (updateActiveUser) => {
       let match = activeUsers.some(singleUser => singleUser.user_id === updateActiveUser.user_id && singleUser.user_name === updateActiveUser.user_name);
