@@ -16,10 +16,9 @@ const io = new Server(http, {cors:{origin:'http://localhost:3000'}})
 let users = [];
 
 io.on('connection', (socket) => {
-    console.log(`⚡: ${socket.id} user just connected!`);
+    // console.log(`⚡: ${socket.id} user just connected!`);
 
     socket.on('message', (data) => {
-        console.log(data);
         io.emit('messageResponse', data);
     })
 
@@ -27,16 +26,14 @@ io.on('connection', (socket) => {
     socket.on('newUser', (data) => {
         //add the new user to the list of users
         users.push(data);
-        console.log(users);
         //sends the list of users to the client
         io.emit('newUserResponse', users);
     })
 
     socket.on('disconnect', () => {
-      console.log('🔥: A user disconnected');
+    //   console.log('🔥: A user disconnected');
       //updates the list of users when a user disconnects from the server
       users = users. filter((user) => user.io !== socket.id);
-      console.log(users);
       //Sends the list of users to the client
       io.emit('newUserResponse', users);
       socket.disconnect();

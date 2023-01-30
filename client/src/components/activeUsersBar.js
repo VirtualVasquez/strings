@@ -23,7 +23,7 @@ const ActiveUsersBar = ({ socket }) => {
         setActiveUsers(prevState => [...prevState, updateActiveUser]);
       }
     });
-  }, [activeUsers]);
+  }, [socket, activeUsers]);
 
   return (
     <div className="col-md-2 offset-1 jumbo-cols" id="users-col">

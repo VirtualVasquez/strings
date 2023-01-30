@@ -12,8 +12,12 @@ const ChatPage = props => {
 
   const {stringsUserID, setStringsUserID, socket} = props;
 
-    const [messages, setMessages] = useState([]);
-    const [textMessage, setTextMessage] = useState("");
+  const [messages, setMessages] = useState([]);
+  const [textMessage, setTextMessage] = useState("");    
+
+
+
+    
 
   async function getMessages(){
     try{
@@ -25,6 +29,7 @@ const ChatPage = props => {
   }
 
   async function messageToDB() {
+    if(textMessage);
     try {
       await axios.post('http://localhost:3001/api/messages', {
         user_id: stringsUserID,
@@ -37,6 +42,15 @@ const ChatPage = props => {
       console.error(error);
     } 
   }
+
+  function scrollToBottom(){
+    // setTimeout(() => {
+        const channelDiv = document.getElementById('channel-history');
+        const channelHeight = channelDiv.scrollHeight;
+        channelDiv.scrollTop = channelHeight;
+    // }, 100);
+}
+
 
   function messagetoIO(){
     if(textMessage.trim()){
@@ -53,12 +67,13 @@ const ChatPage = props => {
     messageToDB();
     messagetoIO();
     setTextMessage('');
+    scrollToBottom();
+    socket.on('messageResponse', (data) => setMessages([...messages, data]));
   }
 
   useEffect(() => {
     getMessages();
-    socket.on('messageResponse', (data) => setMessages([...messages, data]));
-  },[socket, messages])
+  },[])
 
 
     return (
