@@ -65,7 +65,7 @@ const login = (body) => {
 const updateLastActive = (body) => {
     return new Promise(function(resolve, reject){
         const {user_id, user_name} = body;
-        pool.query('UPDATE users SET last_active = NOW() WHERE user_id = $1 RETURNING *', [user_id], (error, results) => {
+        pool.query('UPDATE users SET last_active = NOW() WHERE user_id = $1 RETURNING user_name, user_id', [user_id], (error, results) => {
             if(error){
                 reject(error)
             }

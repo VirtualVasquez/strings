@@ -4,7 +4,6 @@ import axios from 'axios';
 
 
 const ActiveUsersBar = ({ socket }) => {
-  // const [users, setUsers] = useState([]);
   const [activeUsers, setActiveUsers] = useState([]);
 
   async function getActiveUsers(){
@@ -21,19 +20,11 @@ const ActiveUsersBar = ({ socket }) => {
     console.log("Active users:")
     console.log(activeUsers)
 
-// let obj = {id: 1, name: "John"};
-// let arr = [{id: 1, name: "Jane"}, {id: 2, name: "Bob"}];
-
-// let match = arr.some(element => element.id === obj.id && element.name === obj.name);
-// console.log(match); // Output: false
-
-
     socket.on('update_user_activity', (updateActiveUser) => {
-      console.log(updateActiveUser); //WORKING!
-      // check if activer users contains the new active user
-      console.log(user)
-        // if it doesn't then add it to active users
-        // if it does then do nothing
+      let match = activeUsers.some(singleUser => singleUser.user_id === updateActiveUser.user_id && singleUser.user_name === updateActiveUser.user_name);
+      if(!match){
+        setActiveUsers(prevState => [...prevState, updateActiveUser]);
+      }
     });
     console.log(activeUsers);
   }, []);
