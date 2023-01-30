@@ -5,13 +5,7 @@ import axios from 'axios';
 
 const TextBubble = props => {
     const [username, setUsername] = useState(null);
-    const [formattedDate, setFormattedDate] = useState(null);
     const { messageID, userID, text, createdDate} = props;
-
-    function formatDate(){
-        let date = new Date(createdDate);
-        setFormattedDate(date.toLocaleDateString());
-    }
 
 
     async function getUsername(id) {
@@ -25,19 +19,20 @@ const TextBubble = props => {
 
       useEffect(() => {
         getUsername(userID);
-        formatDate();
-      },[])
+        // formatDate(createdDate);
+      },[userID])
 
 
     return (
-            <div 
+            <div
+            key={messageID} 
             className=
             {`textBubble 
             col-md-6 
-            ${localStorage.getItem("strings_user_id") == userID ? 'offset-md-6' : null}
+            ${parseInt(localStorage.getItem("strings_user_id")) === userID ? 'offset-md-6' : null}
             `}
             > 
-                <h6>{username} | {formattedDate}</h6>
+                <h6>{username} | {createdDate.substr(0,10)}</h6>
                 <p>{text}</p>
             </div>
     );

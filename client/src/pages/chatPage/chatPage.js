@@ -25,7 +25,7 @@ const ChatPage = props => {
   }
 
   async function messageToDB() {
-    if(textMessage && textMessage != ""){
+    if(textMessage && textMessage !== ""){
       try {
         await axios.post('http://localhost:3001/api/messages', {
           user_id: stringsUserID,
