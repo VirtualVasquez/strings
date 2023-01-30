@@ -17,15 +17,13 @@ const ActiveUsersBar = ({ socket }) => {
 
   useEffect(() => {
     getActiveUsers();
-
     socket.on('update_user_activity', (updateActiveUser) => {
       let match = activeUsers.some(singleUser => singleUser.user_id === updateActiveUser.user_id && singleUser.user_name === updateActiveUser.user_name);
       if(!match){
         setActiveUsers(prevState => [...prevState, updateActiveUser]);
       }
     });
-    console.log(activeUsers);
-  }, []);
+  }, [activeUsers]);
 
   return (
     <div className="col-md-2 offset-1 jumbo-cols" id="users-col">
