@@ -15,10 +15,6 @@ const ChatPage = props => {
   const [messages, setMessages] = useState([]);
   const [textMessage, setTextMessage] = useState("");    
 
-
-
-    
-
   async function getMessages(){
     try{
       const response = await axios.get('http://localhost:3001/api/messages');
@@ -29,27 +25,26 @@ const ChatPage = props => {
   }
 
   async function messageToDB() {
-    if(textMessage);
-    try {
-      await axios.post('http://localhost:3001/api/messages', {
-        user_id: stringsUserID,
-        message_text: textMessage,
-      });
-      await axios.put('http://localhost:3001/api/users/update-last-active', {
-        user_id: stringsUserID
-      });
-    } catch (error) {
-      console.error(error);
-    } 
+    if(textMessage && textMessage != ""){
+      try {
+        await axios.post('http://localhost:3001/api/messages', {
+          user_id: stringsUserID,
+          message_text: textMessage,
+        });
+        await axios.put('http://localhost:3001/api/users/update-last-active', {
+          user_id: stringsUserID
+        });
+      } catch (error) {
+        console.error(error);
+      } 
+    }
   }
 
   function scrollToBottom(){
-    // setTimeout(() => {
         const channelDiv = document.getElementById('channel-history');
         const channelHeight = channelDiv.scrollHeight;
         channelDiv.scrollTop = channelHeight;
-    // }, 100);
-}
+  }
 
 
   function messagetoIO(){
