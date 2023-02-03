@@ -2,11 +2,11 @@ const Pool = require('pg').Pool
 const pool = new Pool({
     //these credentials are just copied from an example.
     //may need to change these to get the file to work.
-  user: 'postgres',
-  host: 'localhost',
-  database: 'chat_app',
-  password: 'sword2gun',
-  port: 5432,
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
 });
 
 const getUsers = () => {
