@@ -1,3 +1,4 @@
+require('dotenv').config();
 const Pool = require('pg').Pool
 const pool = new Pool({
     //these credentials are just copied from an example.
@@ -52,11 +53,13 @@ const login = (body) => {
             if (error){
                 reject(error)
             }
-            if(user_pass != results.rows[0].user_pass){
-                resolve("The provided password is incorrect");
-            }
-            if(user_pass === results.rows[0].user_pass){
-                resolve(results.rows[0]);
+            if(results){
+                if(user_pass != results.rows[0].user_pass){
+                    resolve("The provided password is incorrect");
+                }
+                if(user_pass === results.rows[0].user_pass){
+                    resolve(results.rows[0]);
+                }
             }
         })
     })
