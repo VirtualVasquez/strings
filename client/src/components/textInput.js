@@ -3,11 +3,6 @@ import React from 'react';
     const TextInput = props => {
         const { textMessage, setTextMessage, pushTextMessage} = props;
 
-        // const handleSubmit = (event) => {
-        //     event.preventDefault();
-        //     pushTextMessage(textMessage);
-        //     setTextMessage("");
-        // }
 
     return (
         <div id="text-form">

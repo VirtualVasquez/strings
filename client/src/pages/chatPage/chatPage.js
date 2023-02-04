@@ -17,7 +17,6 @@ const ChatPage = props => {
 
   async function getMessages(){
     try{
-      // const response = await axios.get('http://localhost:3001/api/messages');
       const response = await axios.get('api/messages');
       setMessages(response.data);
     } catch (error) {
@@ -28,12 +27,10 @@ const ChatPage = props => {
   async function messageToDB() {
     if(textMessage && textMessage !== ""){
       try {
-        // await axios.post('http://localhost:3001/api/messages', {
         await axios.post('api/messages', {
           user_id: stringsUserID,
           message_text: textMessage,
         });
-        // await axios.put('http://localhost:3001/api/users/update-last-active', {
         await axios.put('api/users/update-last-active', {
           user_id: stringsUserID
         });
@@ -49,12 +46,25 @@ const ChatPage = props => {
         channelDiv.scrollTop = channelHeight;
   }
 
+  function formatDate(date){
+    const d = new Date(date);
+    let month = '' + (d.getMonth() + 1);
+    let day = '' + d.getDate();
+    const year = d.getFullYear();
+  
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+  
+    return [year, month, day, 'T05:00:00.000Z'].join('-');
+  }
+
 
   function messagetoIO(){
     if(textMessage.trim()){
       socket.emit('message', {
         user_id: stringsUserID,
         message_text: textMessage,
+        created_date: formatDate(Date.now()), 
         socketID: socket.id
       })
     }

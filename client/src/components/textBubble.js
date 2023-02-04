@@ -6,7 +6,6 @@ import axios from 'axios';
 const TextBubble = props => {
     const [username, setUsername] = useState(null);
     const { messageID, userID, text, createdDate} = props;
-debugger;
 
     async function getUsername(id) {
         try { 
