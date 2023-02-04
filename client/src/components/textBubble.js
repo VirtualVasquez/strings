@@ -18,9 +18,7 @@ const TextBubble = props => {
 
       useEffect(() => {
         getUsername(userID);
-        // formatDate(createdDate);
       },[userID])
-
 
     return (
             <div

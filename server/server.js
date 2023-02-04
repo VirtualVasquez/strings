@@ -78,8 +78,10 @@ app.get("/api/messages", (req, res) => {
 
 //Create a chat message 
 app.post("/api/messages", (req, res) => {
-    message_model.createMessage(req.body).then(response => {
-        res.status(200).send(response);
+    message_model.createMessage(req.body).then(newMessage => {
+        res.status(200).send(newMessage);
+        // broadcast the new message
+        io.emit('message', newMessage);
     })
     .catch(error => {
         res.status(500).send(error);
