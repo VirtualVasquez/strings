@@ -17,13 +17,15 @@ const LoginPage = props => {
 
   async function loginUser(username, password) {
     try {
-      const response = await axios.post('http://localhost:3001/api/login', {
+      // const response = await axios.post('http://localhost:3001/api/login', {
+      const response = await axios.post('/api/login', {
         user_name: username,
         user_pass: password,
       });
       localStorage.setItem("strings_user_id", response.data.user_id);
       localStorage.setItem('userName', username);
-      await axios.put('http://localhost:3001/api/users/update-last-active',
+      // await axios.put('http://localhost:3001/api/users/update-last-active',
+      await axios.put('/api/users/update-last-active',
       {
         user_id: response.data.user_id
       }
@@ -37,13 +39,15 @@ const LoginPage = props => {
   
   async function createUser(username, password, passcheck) {
     try {
-      const response = await axios.post('http://localhost:3001/api/users/update-last-active', {
+      // const response = await axios.post('http://localhost:3001/api/users/update-last-active', {
+      const response = await axios.post('/api/users/update-last-active', {
         user_name: username,
         user_pass: password,
         pass_check: passcheck
       });
       localStorage.setItem("strings_user_id",response.data.rows[0].user_id);
-      await axios.put('http://localhost:3001/api/users/update-last-active', {
+      // await axios.put('http://localhost:3001/api/users/update-last-active', {
+      await axios.put('/api/users/update-last-active', {
         user_id: response.data.rows[0].user_id
       });
       socket.emit('newUser', {username, socketID: socket.id});
