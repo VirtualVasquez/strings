@@ -1,13 +1,16 @@
-require('dotenv').config();
+require("dotenv").config();
+// console.log(process.env.DB_USER);
+// console.log(process.env.DB_HOST);
+// console.log(process.env.DB_DATABASE);
+// console.log(process.env.DB_PASSWORD);
+// console.log(process.env.DB_PORT);
 const Pool = require('pg').Pool
 const pool = new Pool({
-    //these credentials are just copied from an example.
-    //may need to change these to get the file to work.
-user: process.env.DB_USER,
-host: process.env.DB_HOST,
-database: process.env.DB_DATABASE,
-password: process.env.DB_PASSWORD,
-port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
 });
 
 const getMessages = () => {

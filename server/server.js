@@ -43,6 +43,7 @@ io.on('connection', (socket) => {
     });
 });
 
+
 const user_model = require('./user_model.js');
 const message_model = require('./message_model');
 
@@ -138,12 +139,17 @@ app.delete("/api/users", (req, res) => {
 //Get a single user and login
 app.post("/api/login", (req, res) => {
     user_model.login(req.body).then(response => {
-        res.status(200).send(response);
-        //update users last_active column
-        //emit here
+        try {
+            res.status(200).send(response);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({ error: "Internal Server Error" });
+        }
     })
     .catch(error => {
-        res.status(500).send(error);
+        // res.status(500).send(error);
+        console.error(error);
+        res.status(500).send({ error: "Internal Server Error" });
     })
 })
 
