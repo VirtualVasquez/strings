@@ -11,7 +11,7 @@ import Protected from "./helpers/Protected";
 import './App.scss';
 
 import io from 'socket.io-client';
-const socket = io('http://localhost:3001');
+const socket = io();
 
 function App() {
 

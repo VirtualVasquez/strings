@@ -8,7 +8,7 @@ const ActiveUsersBar = ({ socket }) => {
 
   async function getActiveUsers(){
     try{
-      const response = await axios.get('http://localhost:3001/api/users/active');
+      const response = await axios.get('api/users/active');
       setActiveUsers(response.data);
     } catch (error) {
       console.error(error);

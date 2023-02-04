@@ -6,11 +6,11 @@ import axios from 'axios';
 const TextBubble = props => {
     const [username, setUsername] = useState(null);
     const { messageID, userID, text, createdDate} = props;
-
+debugger;
 
     async function getUsername(id) {
         try { 
-          const response = await axios.get(`http://localhost:3001/api/user/${id}`);
+          const response = await axios.get(`api/user/${id}`);
           setUsername(response.data[0].user_name);
         } catch (error) {
           console.error(error);

@@ -49,7 +49,10 @@ const message_model = require('./message_model');
 
 
 app.get("/", (req, res) => {
-    res.send("Hello There!");
+    res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
+})
+
+app.get("/chat", (req, res) => {
     res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
 })
 

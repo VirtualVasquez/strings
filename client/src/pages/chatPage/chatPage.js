@@ -18,7 +18,7 @@ const ChatPage = props => {
   async function getMessages(){
     try{
       // const response = await axios.get('http://localhost:3001/api/messages');
-      const response = await axios.get('/api/messages');
+      const response = await axios.get('api/messages');
       setMessages(response.data);
     } catch (error) {
       console.error(error);
@@ -29,12 +29,12 @@ const ChatPage = props => {
     if(textMessage && textMessage !== ""){
       try {
         // await axios.post('http://localhost:3001/api/messages', {
-        await axios.post('/api/messages', {
+        await axios.post('api/messages', {
           user_id: stringsUserID,
           message_text: textMessage,
         });
         // await axios.put('http://localhost:3001/api/users/update-last-active', {
-        await axios.put('/api/users/update-last-active', {
+        await axios.put('api/users/update-last-active', {
           user_id: stringsUserID
         });
       } catch (error) {
