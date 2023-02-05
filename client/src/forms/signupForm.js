@@ -41,11 +41,15 @@ const SignupForm = props => {
 
     return (
       <div className="col-md-6 offset-md-3">
-
         <form id="signUpForm">
           <div>
             <div className="mb-3">
-              <label htmlFor="createUsername" className="form-label">Username</label>
+              <label 
+                htmlFor="createUsername" 
+                className="form-label"
+              >
+                Username
+              </label>
               <input 
                 type="createUsername" 
                 className="form-control" 
@@ -55,7 +59,11 @@ const SignupForm = props => {
               </input>
             </div>
             <div className="mb-3">
-              <label htmlFor="createPassword" className="form-label">Password</label>
+              <label 
+                htmlFor="createPassword" 
+                className="form-label">
+                  Password
+              </label>
               <input
                 type="createPassword" 
                 className="form-control" 
@@ -65,7 +73,12 @@ const SignupForm = props => {
               </input>
             </div>
             <div className="mb-3">
-              <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+              <label 
+                htmlFor="confirmPassword" 
+                className="form-label"
+              >
+                  Confirm Password
+              </label>
               <input
                 type="confirmPassword" 
                 className="form-control" 

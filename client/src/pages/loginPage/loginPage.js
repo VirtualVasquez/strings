@@ -21,13 +21,13 @@ const LoginPage = props => {
         user_name: username,
         user_pass: password,
       });
-      localStorage.setItem("strings_user_id", response.data.user_id);
-      localStorage.setItem('userName', username);
       await axios.put('api/users/update-last-active',
       {
         user_id: response.data.user_id
       }
       );
+      localStorage.setItem("strings_user_id", response.data.user_id);
+      localStorage.setItem('userName', username);
       socket.emit('newUser', {username, socketID: socket.id});
       window.location.replace('/chat');
     } catch (error) {
@@ -42,11 +42,11 @@ const LoginPage = props => {
         user_pass: password,
         pass_check: passcheck
       });
-      localStorage.setItem("strings_user_id",response.data.rows[0].user_id);
-      localStorage.setItem('userName', username);
       await axios.put('api/users/update-last-active', {
-        user_id: response.data.rows[0].user_id
+        user_id: response.data.user_id
       });
+      localStorage.setItem("strings_user_id",response.data.user_id);
+      localStorage.setItem('userName', username);
       socket.emit('newUser', {username, socketID: socket.id});
       window.location.replace('/chat');
     } catch (error) {

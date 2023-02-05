@@ -12,11 +12,15 @@ const LoginForm = props => {
 
     return (
           <div className="col-md-6 offset-md-3">
-
             <form id="signInForm">
               <div>
                 <div className="mb-3">
-                  <label htmlFor="username" className="form-label">Username</label>
+                  <label 
+                    htmlFor="username" 
+                    className="form-label"
+                  >
+                    Username
+                  </label>
                   <input 
                     type="username" 
                     className="form-control" 
@@ -25,9 +29,13 @@ const LoginForm = props => {
                   >
                   </input>
                 </div>
-
                 <div className="mb-3">
-                  <label htmlFor="password" className="form-label">Password</label>
+                  <label 
+                    htmlFor="password" 
+                    className="form-label"
+                  >
+                    Password
+                  </label>
                   <input 
                     type="password" 
                     className="form-control" 
@@ -38,8 +46,13 @@ const LoginForm = props => {
                 </div>
               </div>
 
-
-              <button type="submit" className="btn col-12 btn-primary" onClick={handleSubmit}>Submit</button>
+              <button 
+                type="submit" 
+                className="btn col-12 btn-primary" 
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
             </form>
             
           </div>
