@@ -158,7 +158,7 @@ app.post("/api/login", (req, res) => {
     })
 })
 
-
+//Update a user's activity timestamp
 app.put("/api/users/update-last-active", (req, res) => {
     user_model.updateLastActive(req.body).then(response => {
         res.status(200).send(response);
