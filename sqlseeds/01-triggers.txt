@@ -1,0 +1,15 @@
+-- FUNCTION: public.current_date_function()
+
+-- DROP FUNCTION IF EXISTS public.current_date_function();
+
+CREATE OR REPLACE FUNCTION public.current_date_function()
+    RETURNS trigger
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE NOT LEAKPROOF
+AS $BODY$
+BEGIN
+NEW.created_date = current_date;
+RETURN NEW;
+END;
+$BODY$;

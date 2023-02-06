@@ -1,0 +1,19 @@
+-- Table: public.users
+
+-- DROP TABLE IF EXISTS public.users;
+
+CREATE TABLE IF NOT EXISTS public.users
+(
+    user_id integer NOT NULL DEFAULT nextval('user_sequence_pattern'::regclass),
+    user_name character varying(30) COLLATE pg_catalog."default",
+    user_pass character varying(30) COLLATE pg_catalog."default",
+    created_date date,
+    last_active timestamp without time zone,
+    CONSTRAINT users_pkey PRIMARY KEY (user_id),
+    CONSTRAINT users_user_name_key UNIQUE (user_name)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.users
+    OWNER to postgres;

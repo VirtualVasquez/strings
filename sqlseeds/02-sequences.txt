@@ -1,0 +1,23 @@
+-- SEQUENCE: public.user_sequence_pattern
+
+-- DROP SEQUENCE IF EXISTS public.user_sequence_pattern;
+
+CREATE SEQUENCE IF NOT EXISTS public.user_sequence_pattern
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+
+
+-- SEQUENCE: public.message_id_sequence
+
+-- DROP SEQUENCE IF EXISTS public.message_id_sequence;
+
+CREATE SEQUENCE IF NOT EXISTS public.message_id_sequence
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
