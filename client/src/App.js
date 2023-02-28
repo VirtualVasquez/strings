@@ -8,7 +8,6 @@ import {
 import LoginPage from './pages/loginPage/loginPage';
 import ChatPage from './pages/chatPage/chatPage.js';
 import Protected from "./helpers/Protected";
-import './App.scss';
 
 import io from 'socket.io-client';
 const socket = io();
@@ -25,7 +24,6 @@ function App() {
 
   return (
     <Router>
-    <div className="app">
       <Routes>
         <Route 
           exact path="/" 
@@ -48,7 +46,6 @@ function App() {
           } 
          />
       </Routes>
-    </div>
   </Router>
   );
 }

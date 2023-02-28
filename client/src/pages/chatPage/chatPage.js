@@ -6,7 +6,11 @@ import Nav from '../../components/nav';
 import TextInput from '../../components/textInput';
 import ActiveUsersBar from '../../components/activeUsersBar';
 
-
+function scrollToBottom() {
+  const channelDiv = document.getElementById('channel-history');
+  const channelHeight = channelDiv.scrollHeight;
+  channelDiv.scrollTop = channelHeight;
+} 
 
 const ChatPage = props => {
 
@@ -15,6 +19,8 @@ const ChatPage = props => {
   const [messages, setMessages] = useState([]);
   const [textMessage, setTextMessage] = useState("");
 
+
+  //should be done via socket.io
   async function getMessages() {
     try {
       const response = await axios.get('api/messages');
@@ -24,6 +30,7 @@ const ChatPage = props => {
     }
   }
 
+  //should be done via socket.io
   async function messageToDB() {
     if (textMessage && textMessage !== "") {
       try {
@@ -40,11 +47,7 @@ const ChatPage = props => {
     }
   }
 
-  function scrollToBottom() {
-    const channelDiv = document.getElementById('channel-history');
-    const channelHeight = channelDiv.scrollHeight;
-    channelDiv.scrollTop = channelHeight;
-  }
+
 
   const pushTextMessage = (e) => {
     e.preventDefault();
@@ -57,6 +60,7 @@ const ChatPage = props => {
     setMessages(messages => [...messages, message]);
   }
 
+  //this is should of how it was done for getMessages and messageToDB
   useEffect(() => {
     getMessages();
     
